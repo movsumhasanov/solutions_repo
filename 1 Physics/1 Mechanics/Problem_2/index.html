@@ -172,6 +172,102 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<ol>
+<li>General Equations of Motion in Two Dimensions**<br/>
+Using kinematic equations for motion under constant acceleration:  </li>
+</ol>
+<p>[
+x = x_0 + v_{0x} t
+]
+[
+y = y_0 + v_{0y} t - \frac{1}{2} g t^2
+]</p>
+<p>where:<br/>
+- <span class="arithmatex">\( x_0, y_0 \)</span> = Initial position (often taken as 0)<br/>
+- <span class="arithmatex">\( v_{0x} = v_0 \cos\theta \)</span> (horizontal velocity)<br/>
+- <span class="arithmatex">\( v_{0y} = v_0 \sin\theta \)</span> (initial vertical velocity)  </p>
+<ol>
+<li>
+<p>Velocity Components at Any Time <span class="arithmatex">\( t \)</span>**<br/>
+[
+v_x = v_0 \cos\theta
+]
+[
+v_y = v_0 \sin\theta - g t
+]</p>
+</li>
+<li>
+<p>Velocity Magnitude and Direction**  </p>
+</li>
+<li><strong>Resultant velocity at time <span class="arithmatex">\( t \)</span>:</strong><br/>
+  [
+  v = \sqrt{v_x^2 + v_y^2}
+  ]</li>
+<li>
+<p><strong>Direction (angle <span class="arithmatex">\( \alpha \)</span> with horizontal):</strong><br/>
+  [
+  \tan\alpha = \frac{v_y}{v_x}
+  ]</p>
+</li>
+<li>
+<p>Equation of Trajectory<strong><br/>
+To express <span class="arithmatex">\( y \)</span> as a function of <span class="arithmatex">\( x \)</span>, eliminate <span class="arithmatex">\( t \)</span>:<br/>
+[
+y = x \tan\theta - \frac{g x^2}{2 v_0^2 \cos^2\theta}
+]
+This represents the </strong>parabolic** path of the projectile.</p>
+</li>
+<li>
+<p>Time to Reach Maximum Height**<br/>
+Since the vertical velocity becomes zero at the peak:<br/>
+[
+t_{\text{max}} = \frac{v_0 \sin\theta}{g}
+]</p>
+</li>
+<li>
+<p>Alternative Form for Maximum Height**<br/>
+Using the kinematic equation <span class="arithmatex">\( v^2 = v_0^2 + 2a s \)</span>:<br/>
+[
+H = \frac{(v_0 \sin\theta)^2}{2g}
+]</p>
+</li>
+<li>
+<p>Alternative Form for Range**<br/>
+Since <span class="arithmatex">\( R = v_x \times T \)</span>, using <span class="arithmatex">\( T = \frac{2 v_0 \sin\theta}{g} \)</span>, we get:<br/>
+[
+R = \frac{v_0^2 \sin 2\theta}{g}
+]</p>
+</li>
+</ol>
+<p>import numpy as np
+import matplotlib.pyplot as plt</p>
+<p>g = 9.81  # Acceleration due to gravity (m/s^2)</p>
+<p>v0 = float(input("Enter initial velocity (m/s): "))
+theta = float(input("Enter launch angle (degrees): "))</p>
+<p>theta_rad = np.radians(theta)</p>
+<p>T = (2 * v0 * np.sin(theta_rad)) / g  # Total time of flight
+H = (v0<strong>2 * np.sin(theta_rad)</strong>2) / (2 * g)  # Maximum height
+R = (v0**2 * np.sin(2 * theta_rad)) / g  # Horizontal range</p>
+<p>t = np.linspace(0, T, num=100)</p>
+<p>x = v0 * np.cos(theta_rad) * t  # Horizontal position
+y = v0 * np.sin(theta_rad) * t - 0.5 * g * t**2  # Vertical position</p>
+<p>plt.figure(figsize=(10, 5))
+plt.plot(x, y, label="Projectile Path", color="blue")
+plt.axhline(0, color="black", linewidth=0.5)  # Ground line
+plt.xlabel("Horizontal Distance (m)")
+plt.ylabel("Vertical Distance (m)")
+plt.title("Projectile Motion Trajectory")
+plt.legend()
+plt.grid()</p>
+<h1 id="show-key-points">Show key points</h1>
+<p>plt.scatter([R], [0], color="red", label="Range (R)")
+plt.scatter([R/2], [H], color="green", label="Max Height (H)")
+plt.legend()</p>
+<p>plt.show()</p>
+<h1 id="print-key-results">Print key results</h1>
+<p>print(f"Time of Flight: {T:.2f} s")
+print(f"Maximum Height: {H:.2f} m")
+print(f"Range: {R:.2f} m")</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

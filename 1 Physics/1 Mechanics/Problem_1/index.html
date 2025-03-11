@@ -48,26 +48,6 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#projectile-motion-description-and-formulas">Projectile Motion: Description and Formulas</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#key-assumptions">Key Assumptions</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#equations-of-projectile-motion">Equations of Projectile Motion</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#1-components-of-initial-velocity">1. Components of Initial Velocity</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#2-time-of-flight">2. Time of Flight</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#3-maximum-height">3. Maximum Height</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#4-horizontal-range">4. Horizontal Range</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#5-position-at-any-time-t">5. Position at Any Time (t)</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#6-velocity-at-any-time-t">6. Velocity at Any Time (t)</a>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -191,65 +171,70 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
-<h3 id="projectile-motion-description-and-formulas"><strong>Projectile Motion: Description and Formulas</strong></h3>
-<p><strong>Projectile motion</strong> is the motion of an object thrown or projected into the air, subject to only the acceleration due to gravity. It follows a <strong>parabolic trajectory</strong> due to the combination of constant horizontal velocity and vertically accelerated motion.  </p>
-<h3 id="key-assumptions"><strong>Key Assumptions</strong></h3>
 <ol>
-<li>Air resistance is negligible.  </li>
-<li>The acceleration due to gravity (<strong>g</strong>) is constant (≈ 9.81 m/s² downward).  </li>
-<li>The motion occurs in two dimensions:  </li>
-<li><strong>Horizontal (x-axis)</strong>: No acceleration, constant velocity.  </li>
-<li><strong>Vertical (y-axis)</strong>: Acceleration due to gravity.  </li>
+<li>Motivation</li>
 </ol>
-<h3 id="equations-of-projectile-motion"><strong>Equations of Projectile Motion</strong></h3>
-<h4 id="1-components-of-initial-velocity"><strong>1. Components of Initial Velocity</strong></h4>
-<p>If an object is launched with an initial velocity <span class="arithmatex">\( v_0 \)</span> at an angle <span class="arithmatex">\( \theta \)</span>, its horizontal and vertical components are:<br/>
-[
-v_{0x} = v_0 \cos\theta
-]
-[
-v_{0y} = v_0 \sin\theta
-]</p>
-<h4 id="2-time-of-flight"><strong>2. Time of Flight</strong></h4>
-<p>Total time the projectile stays in the air:<br/>
-[
-T = \frac{2 v_0 \sin\theta}{g}
-]
-(Valid for projectiles that land at the same height they were launched from.)  </p>
-<h4 id="3-maximum-height"><strong>3. Maximum Height</strong></h4>
-<p>The highest point reached by the projectile:<br/>
-[
-H = \frac{v_0^2 \sin^2\theta}{2g}
-]</p>
-<h4 id="4-horizontal-range"><strong>4. Horizontal Range</strong></h4>
-<p>The total horizontal distance traveled:<br/>
-[
-R = \frac{v_0^2 \sin 2\theta}{g}
-]</p>
-<h4 id="5-position-at-any-time-t"><strong>5. Position at Any Time (t)</strong></h4>
-<ul>
-<li><strong>Horizontal position (x):</strong><br/>
-  [
-  x = v_{0x} t = (v_0 \cos\theta) t
-  ]</li>
-<li><strong>Vertical position (y):</strong><br/>
-  [
-  y = (v_0 \sin\theta) t - \frac{1}{2} g t^2
-  ]</li>
-</ul>
-<h4 id="6-velocity-at-any-time-t"><strong>6. Velocity at Any Time (t)</strong></h4>
-<ul>
-<li><strong>Horizontal velocity:</strong> <span class="arithmatex">\( v_x = v_0 \cos\theta \)</span> (constant)  </li>
-<li><strong>Vertical velocity:</strong><br/>
-  [
-  v_y = v_0 \sin\theta - g t
-  ]</li>
-<li><strong>Magnitude of velocity at time <span class="arithmatex">\( t \)</span>:</strong><br/>
-  [
-  v = \sqrt{v_x^2 + v_y^2}
-  ]</li>
-</ul>
+<p>Projectile motion, while seemingly simple, offers a rich playground for exploring fundamental principles of physics. The problem is straightforward: analyze how the range of a projectile depends on its angle of projection. Yet, beneath this simplicity lies a complex and versatile framework. The equations governing projectile motion involve both linear and quadratic relationships, making them accessible yet deeply insightful.</p>
+<p>What makes this topic particularly compelling is the number of free parameters involved in these equations, such as initial velocity, gravitational acceleration, and launch height. These parameters give rise to a diverse set of solutions that can describe a wide array of real-world phenomena, from the arc of a soccer ball to the trajectory of a rocket.</p>
+<ol>
+<li>Theoretical Foundation</li>
+</ol>
+<p>2.1 Governing Equations of Motion</p>
+<p>The motion of a projectile follows a two-dimensional trajectory under the influence of gravity. Assuming negligible air resistance, the equations governing projectile motion are:</p>
+<p>Horizontal Motion:</p>
+<p>Vertical Motion:</p>
+<p>where:</p>
+<p>and  are the horizontal and vertical positions,</p>
+<p>is the initial velocity,</p>
+<p>is the angle of projection,</p>
+<p>is the acceleration due to gravity (typically ),</p>
+<p>is the time.</p>
+<p>The total time of flight is derived by solving for when :</p>
+<p>The horizontal range (distance traveled before hitting the ground) is given by:</p>
+<p>2.2 Effect of Initial Conditions</p>
+<p>Initial velocity: Increasing  increases the range quadratically.</p>
+<p>Gravitational acceleration: A higher  (e.g., on Jupiter) shortens the range.</p>
+<p>Angle of projection: The range is maximized at .</p>
+<ol>
+<li>Analysis of the Range</li>
+</ol>
+<p>3.1 Angle Dependence</p>
+<p>The range function  shows a symmetric dependence on , peaking at . The function exhibits periodic behavior, repeating every .</p>
+<p>3.2 Effect of Other Parameters</p>
+<p>Higher launch speeds yield greater ranges.</p>
+<p>Lower gravity (e.g., Moon) results in significantly longer ranges.</p>
+<p>Air resistance, if included, alters the idealized parabolic trajectory.</p>
+<ol>
+<li>Practical Applications</li>
+</ol>
+<p>Sports Physics: Optimizing angles in soccer, basketball, and golf.</p>
+<p>Ballistics: Predicting trajectories in military applications.</p>
+<p>Space Exploration: Calculating launch angles for minimal energy expenditure.</p>
+<ol>
+<li>Computational Implementation</li>
+</ol>
+<p>To visualize how the range depends on the angle, we implement a Python simulation using Matplotlib and NumPy.</p>
+<p>import numpy as np
+import matplotlib.pyplot as plt</p>
+<p>def projectile_range(v0, g=9.81):
+    angles = np.linspace(0, 90, 100)  # Angles in degrees
+    radians = np.radians(angles)
+    ranges = (v0**2 * np.sin(2 * radians)) / g</p>
+<pre><code>plt.figure(figsize=(8, 5))
+plt.plot(angles, ranges, label=f'v0 = {v0} m/s')
+plt.xlabel('Angle of Projection (degrees)')
+plt.ylabel('Range (meters)')
+plt.title('Projectile Range vs Angle of Projection')
+plt.legend()
+plt.grid()
+plt.show()
+</code></pre>
+<h1 id="example-usage">Example usage</h1>
+<p>projectile_range(20)</p>
+<ol>
+<li>Conclusion</li>
+</ol>
+<p>We have explored the dependence of projectile range on the angle of projection, deriving theoretical results and verifying them with computational simulations. The model provides deep insights into various practical applications, demonstrating the importance of fundamental physics in real-world scenarios.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
