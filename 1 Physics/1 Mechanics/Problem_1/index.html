@@ -48,6 +48,26 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#projectile-motion-description-and-formulas">Projectile Motion: Description and Formulas</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#key-assumptions">Key Assumptions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#equations-of-projectile-motion">Equations of Projectile Motion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-components-of-initial-velocity">1. Components of Initial Velocity</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-time-of-flight">2. Time of Flight</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-maximum-height">3. Maximum Height</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-horizontal-range">4. Horizontal Range</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#5-position-at-any-time-t">5. Position at Any Time (t)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#6-velocity-at-any-time-t">6. Velocity at Any Time (t)</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -172,7 +192,64 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<p>lorem ijbh ccy</p>
+<h3 id="projectile-motion-description-and-formulas"><strong>Projectile Motion: Description and Formulas</strong></h3>
+<p><strong>Projectile motion</strong> is the motion of an object thrown or projected into the air, subject to only the acceleration due to gravity. It follows a <strong>parabolic trajectory</strong> due to the combination of constant horizontal velocity and vertically accelerated motion.  </p>
+<h3 id="key-assumptions"><strong>Key Assumptions</strong></h3>
+<ol>
+<li>Air resistance is negligible.  </li>
+<li>The acceleration due to gravity (<strong>g</strong>) is constant (≈ 9.81 m/s² downward).  </li>
+<li>The motion occurs in two dimensions:  </li>
+<li><strong>Horizontal (x-axis)</strong>: No acceleration, constant velocity.  </li>
+<li><strong>Vertical (y-axis)</strong>: Acceleration due to gravity.  </li>
+</ol>
+<h3 id="equations-of-projectile-motion"><strong>Equations of Projectile Motion</strong></h3>
+<h4 id="1-components-of-initial-velocity"><strong>1. Components of Initial Velocity</strong></h4>
+<p>If an object is launched with an initial velocity <span class="arithmatex">\( v_0 \)</span> at an angle <span class="arithmatex">\( \theta \)</span>, its horizontal and vertical components are:<br/>
+[
+v_{0x} = v_0 \cos\theta
+]
+[
+v_{0y} = v_0 \sin\theta
+]</p>
+<h4 id="2-time-of-flight"><strong>2. Time of Flight</strong></h4>
+<p>Total time the projectile stays in the air:<br/>
+[
+T = \frac{2 v_0 \sin\theta}{g}
+]
+(Valid for projectiles that land at the same height they were launched from.)  </p>
+<h4 id="3-maximum-height"><strong>3. Maximum Height</strong></h4>
+<p>The highest point reached by the projectile:<br/>
+[
+H = \frac{v_0^2 \sin^2\theta}{2g}
+]</p>
+<h4 id="4-horizontal-range"><strong>4. Horizontal Range</strong></h4>
+<p>The total horizontal distance traveled:<br/>
+[
+R = \frac{v_0^2 \sin 2\theta}{g}
+]</p>
+<h4 id="5-position-at-any-time-t"><strong>5. Position at Any Time (t)</strong></h4>
+<ul>
+<li><strong>Horizontal position (x):</strong><br/>
+  [
+  x = v_{0x} t = (v_0 \cos\theta) t
+  ]</li>
+<li><strong>Vertical position (y):</strong><br/>
+  [
+  y = (v_0 \sin\theta) t - \frac{1}{2} g t^2
+  ]</li>
+</ul>
+<h4 id="6-velocity-at-any-time-t"><strong>6. Velocity at Any Time (t)</strong></h4>
+<ul>
+<li><strong>Horizontal velocity:</strong> <span class="arithmatex">\( v_x = v_0 \cos\theta \)</span> (constant)  </li>
+<li><strong>Vertical velocity:</strong><br/>
+  [
+  v_y = v_0 \sin\theta - g t
+  ]</li>
+<li><strong>Magnitude of velocity at time <span class="arithmatex">\( t \)</span>:</strong><br/>
+  [
+  v = \sqrt{v_x^2 + v_y^2}
+  ]</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
