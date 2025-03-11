@@ -1,64 +1,93 @@
-# Problem 1
+1. Motivation
 
-### **Projectile Motion: Description and Formulas**  
+Projectile motion, while seemingly simple, offers a rich playground for exploring fundamental principles of physics. The problem is straightforward: analyze how the range of a projectile depends on its angle of projection. Yet, beneath this simplicity lies a complex and versatile framework. The equations governing projectile motion involve both linear and quadratic relationships, making them accessible yet deeply insightful.
 
-**Projectile motion** is the motion of an object thrown or projected into the air, subject to only the acceleration due to gravity. It follows a **parabolic trajectory** due to the combination of constant horizontal velocity and vertically accelerated motion.  
+What makes this topic particularly compelling is the number of free parameters involved in these equations, such as initial velocity, gravitational acceleration, and launch height. These parameters give rise to a diverse set of solutions that can describe a wide array of real-world phenomena, from the arc of a soccer ball to the trajectory of a rocket.
 
-### **Key Assumptions**  
-1. Air resistance is negligible.  
-2. The acceleration due to gravity (**g**) is constant (≈ 9.81 m/s² downward).  
-3. The motion occurs in two dimensions:  
-   - **Horizontal (x-axis)**: No acceleration, constant velocity.  
-   - **Vertical (y-axis)**: Acceleration due to gravity.  
+2. Theoretical Foundation
 
-### **Equations of Projectile Motion**  
+2.1 Governing Equations of Motion
 
-#### **1. Components of Initial Velocity**  
-If an object is launched with an initial velocity \( v_0 \) at an angle \( \theta \), its horizontal and vertical components are:  
-\[
-v_{0x} = v_0 \cos\theta
-\]
-\[
-v_{0y} = v_0 \sin\theta
-\]
+The motion of a projectile follows a two-dimensional trajectory under the influence of gravity. Assuming negligible air resistance, the equations governing projectile motion are:
 
-#### **2. Time of Flight**  
-Total time the projectile stays in the air:  
-\[
-T = \frac{2 v_0 \sin\theta}{g}
-\]
-(Valid for projectiles that land at the same height they were launched from.)  
+Horizontal Motion:
 
-#### **3. Maximum Height**  
-The highest point reached by the projectile:  
-\[
-H = \frac{v_0^2 \sin^2\theta}{2g}
-\]
 
-#### **4. Horizontal Range**  
-The total horizontal distance traveled:  
-\[
-R = \frac{v_0^2 \sin 2\theta}{g}
-\]
+Vertical Motion:
 
-#### **5. Position at Any Time (t)**  
-- **Horizontal position (x):**  
-  \[
-  x = v_{0x} t = (v_0 \cos\theta) t
-  \]
-- **Vertical position (y):**  
-  \[
-  y = (v_0 \sin\theta) t - \frac{1}{2} g t^2
-  \]
 
-#### **6. Velocity at Any Time (t)**  
-- **Horizontal velocity:** \( v_x = v_0 \cos\theta \) (constant)  
-- **Vertical velocity:**  
-  \[
-  v_y = v_0 \sin\theta - g t
-  \]
-- **Magnitude of velocity at time \( t \):**  
-  \[
-  v = \sqrt{v_x^2 + v_y^2}
-  \]
+where:
 
+ and  are the horizontal and vertical positions,
+
+ is the initial velocity,
+
+ is the angle of projection,
+
+ is the acceleration due to gravity (typically ),
+
+ is the time.
+
+The total time of flight is derived by solving for when :
+
+
+The horizontal range (distance traveled before hitting the ground) is given by:
+
+
+2.2 Effect of Initial Conditions
+
+Initial velocity: Increasing  increases the range quadratically.
+
+Gravitational acceleration: A higher  (e.g., on Jupiter) shortens the range.
+
+Angle of projection: The range is maximized at .
+
+3. Analysis of the Range
+
+3.1 Angle Dependence
+
+The range function  shows a symmetric dependence on , peaking at . The function exhibits periodic behavior, repeating every .
+
+3.2 Effect of Other Parameters
+
+Higher launch speeds yield greater ranges.
+
+Lower gravity (e.g., Moon) results in significantly longer ranges.
+
+Air resistance, if included, alters the idealized parabolic trajectory.
+
+4. Practical Applications
+
+Sports Physics: Optimizing angles in soccer, basketball, and golf.
+
+Ballistics: Predicting trajectories in military applications.
+
+Space Exploration: Calculating launch angles for minimal energy expenditure.
+
+5. Computational Implementation
+
+To visualize how the range depends on the angle, we implement a Python simulation using Matplotlib and NumPy.
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+def projectile_range(v0, g=9.81):
+    angles = np.linspace(0, 90, 100)  # Angles in degrees
+    radians = np.radians(angles)
+    ranges = (v0**2 * np.sin(2 * radians)) / g
+    
+    plt.figure(figsize=(8, 5))
+    plt.plot(angles, ranges, label=f'v0 = {v0} m/s')
+    plt.xlabel('Angle of Projection (degrees)')
+    plt.ylabel('Range (meters)')
+    plt.title('Projectile Range vs Angle of Projection')
+    plt.legend()
+    plt.grid()
+    plt.show()
+
+# Example usage
+projectile_range(20)
+
+6. Conclusion
+
+We have explored the dependence of projectile range on the angle of projection, deriving theoretical results and verifying them with computational simulations. The model provides deep insights into various practical applications, demonstrating the importance of fundamental physics in real-world scenarios.
