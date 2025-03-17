@@ -5,12 +5,12 @@
 1. General Equations of Motion in Two Dimensions**  
 Using kinematic equations for motion under constant acceleration:  
 
-\[
+$$
 x = x_0 + v_{0x} t
-\]
-\[
-y = y_0 + v_{0y} t - \frac{1}{2} g t^2
-\]
+
+$$
+$$ y = y_0 + v_{0y} t - \frac{1}{2} g t^2
+$$
 
 where:  
 - \( x_0, y_0 \) = Initial position (often taken as 0)  
