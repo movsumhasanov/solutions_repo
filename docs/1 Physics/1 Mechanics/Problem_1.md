@@ -1,93 +1,100 @@
-1. Motivation
+# Investigating the Range as a Function of the Angle of Projection
 
-Projectile motion, while seemingly simple, offers a rich playground for exploring fundamental principles of physics. The problem is straightforward: analyze how the range of a projectile depends on its angle of projection. Yet, beneath this simplicity lies a complex and versatile framework. The equations governing projectile motion involve both linear and quadratic relationships, making them accessible yet deeply insightful.
+## Theoretical Foundation
+Projectile motion follows the principles of kinematics and Newton’s laws of motion. When an object is launched with an initial velocity $v_0$ at an angle $\theta$ from the horizontal, its motion can be described by the following fundamental equations:
 
-What makes this topic particularly compelling is the number of free parameters involved in these equations, such as initial velocity, gravitational acceleration, and launch height. These parameters give rise to a diverse set of solutions that can describe a wide array of real-world phenomena, from the arc of a soccer ball to the trajectory of a rocket.
+### Equations of Motion:
+- $x = v_0 \cos(\theta) t$ (Horizontal displacement)
+- $y = v_0 \sin(\theta) t - \frac{1}{2} g t^2$ (Vertical displacement)
 
-2. Theoretical Foundation
+### Time of Flight:
+- $$T = \frac{2 v_0 \sin(\theta)}{g}$$
 
-2.1 Governing Equations of Motion
+### Maximum Height:
+- $$H = \frac{v_0^2 \sin^2(\theta)}{2 g}$$
 
-The motion of a projectile follows a two-dimensional trajectory under the influence of gravity. Assuming negligible air resistance, the equations governing projectile motion are:
+### Range of the Projectile:
+- $$R = \frac{v_0^2 \sin(2\theta)}{g}$$
 
-Horizontal Motion:
+## Analysis of the Range
+The range of the projectile depends on the launch angle $\theta$ and initial velocity $v_0$. The range formula indicates that the maximum range occurs at $\theta = 45^\circ$. Any deviation from this optimal angle results in a reduced range. Additionally, increasing $v_0$ leads to a greater range, while higher gravitational acceleration reduces it.
 
+Further, using trigonometric identities, we analyze how the range is affected:
+- The derivative of the range equation with respect to $\theta$ gives:
+  $$ \frac{dR}{d\theta} = \frac{2 v_0^2 \cos(2\theta)}{g} $$
+  Setting this to zero confirms that $\theta = 45^\circ$ maximizes the range.
+- If air resistance is considered, the range formula becomes:
+  $$ R = \frac{v_0^2 \sin(2\theta)}{g} e^{-\gamma T} $$
+  where $\gamma$ is the drag coefficient.
 
-Vertical Motion:
+## Practical Applications
+Projectile motion plays a crucial role in various real-world scenarios:
+- **Sports**: Calculating the trajectory of a soccer ball, basketball shot, or golf drive using physics principles.
+- **Ballistics**: Understanding the motion of bullets or artillery shells to ensure accurate targeting.
+- **Space Exploration**: Estimating launch angles for rockets to achieve specific orbits.
+- **Engineering**: Designing bridges, dams, and structures considering projectile motion in case of falling debris.
 
+## Implementation with Python Simulation
+Below is the Python code that simulates projectile motion and visualizes the relationship between launch angle and range.
 
-where:
-
- and  are the horizontal and vertical positions,
-
- is the initial velocity,
-
- is the angle of projection,
-
- is the acceleration due to gravity (typically ),
-
- is the time.
-
-The total time of flight is derived by solving for when :
-
-
-The horizontal range (distance traveled before hitting the ground) is given by:
-
-
-2.2 Effect of Initial Conditions
-
-Initial velocity: Increasing  increases the range quadratically.
-
-Gravitational acceleration: A higher  (e.g., on Jupiter) shortens the range.
-
-Angle of projection: The range is maximized at .
-
-3. Analysis of the Range
-
-3.1 Angle Dependence
-
-The range function  shows a symmetric dependence on , peaking at . The function exhibits periodic behavior, repeating every .
-
-3.2 Effect of Other Parameters
-
-Higher launch speeds yield greater ranges.
-
-Lower gravity (e.g., Moon) results in significantly longer ranges.
-
-Air resistance, if included, alters the idealized parabolic trajectory.
-
-4. Practical Applications
-
-Sports Physics: Optimizing angles in soccer, basketball, and golf.
-
-Ballistics: Predicting trajectories in military applications.
-
-Space Exploration: Calculating launch angles for minimal energy expenditure.
-
-5. Computational Implementation
-
-To visualize how the range depends on the angle, we implement a Python simulation using Matplotlib and NumPy.
-
+```python
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.constants import g
 
-def projectile_range(v0, g=9.81):
-    angles = np.linspace(0, 90, 100)  # Angles in degrees
-    radians = np.radians(angles)
-    ranges = (v0**2 * np.sin(2 * radians)) / g
-    
-    plt.figure(figsize=(8, 5))
-    plt.plot(angles, ranges, label=f'v0 = {v0} m/s')
-    plt.xlabel('Angle of Projection (degrees)')
-    plt.ylabel('Range (meters)')
-    plt.title('Projectile Range vs Angle of Projection')
-    plt.legend()
-    plt.grid()
-    plt.show()
+# Function to compute the range of a projectile
+def projectile_range(v0, theta, g=9.81):
+    theta_rad = np.radians(theta)
+    return (v0**2 * np.sin(2 * theta_rad)) / g
 
-# Example usage
-projectile_range(20)
+# Define parameters
+v0 = 50  # Initial velocity in m/s
+angles = np.linspace(0, 90, 100)  # Angle range from 0 to 90 degrees
+ranges = [projectile_range(v0, theta) for theta in angles]
 
-6. Conclusion
+# Plot the range as a function of launch angle
+plt.figure(figsize=(8,6))
+plt.plot(angles, ranges, label='Range vs Angle', color='b')
+plt.xlabel("Launch Angle (degrees)")
+plt.ylabel("Range (m)")
+plt.title("Projectile Range as a Function of Angle")
+plt.legend()
+plt.grid()
+plt.show()
 
-We have explored the dependence of projectile range on the angle of projection, deriving theoretical results and verifying them with computational simulations. The model provides deep insights into various practical applications, demonstrating the importance of fundamental physics in real-world scenarios.
+# Simulating projectile motion for a given angle
+def projectile_trajectory(v0, theta, g=9.81):
+    theta_rad = np.radians(theta)
+    t_flight = (2 * v0 * np.sin(theta_rad)) / g  # Total flight time
+    t = np.linspace(0, t_flight, num=100)
+    x = v0 * np.cos(theta_rad) * t
+    y = v0 * np.sin(theta_rad) * t - 0.5 * g * t**2
+    return x, y
+
+# Plot trajectories for different angles
+plt.figure(figsize=(8,6))
+for theta in [15, 30, 45, 60, 75]:
+    x, y = projectile_trajectory(v0, theta)
+    plt.plot(x, y, label=f'{theta} degrees')
+
+plt.xlabel("Horizontal Distance (m)")
+plt.ylabel("Vertical Distance (m)")
+plt.title("Projectile Motion for Different Angles")
+plt.legend()
+plt.grid()
+plt.show()
+```
+![alt text](image.png)
+![alt text](image-1.png)
+
+## Discussion
+The simulation confirms that the projectile achieves maximum range at $\theta = 45^\circ$. This follows from the mathematical relationship $\sin(2\theta)$, which attains its maximum value at this angle. However, in real-world applications, several factors affect projectile motion:
+
+- **Air Resistance**: Causes a reduction in range due to energy loss.
+- **Altitude Variations**: Gravity is not constant everywhere on Earth.
+- **Wind Effects**: Can alter the trajectory of projectiles significantly.
+- **Non-Uniform Launch Surfaces**: In practical applications like sports and military applications, the ground is not always level.
+- **Rotational Effects**: Spin and the Magnus effect impact sports projectiles such as baseballs and soccer balls.
+
+## Conclusion
+Projectile motion provides a strong foundation for understanding various physical phenomena. Theoretical analysis and computational simulations show how different angles influence range and trajectory. By incorporating additional factors like drag, wind, and varying gravity, more accurate models can be developed for real-world applications.
