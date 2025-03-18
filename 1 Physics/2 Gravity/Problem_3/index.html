@@ -172,6 +172,115 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-3">Problem 3</h1>
+<h1 id="trajectories-of-a-freely-released-payload-near-earth">Trajectories of a Freely Released Payload Near Earth</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<h3 id="gravitational-force">Gravitational Force</h3>
+<p>The gravitational force acting on a payload near Earth can be described using <strong>Newton's Law of Gravitation</strong>:</p>
+<div class="arithmatex">\[
+F = \frac{GMm}{r^2}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\( F \)</span> = gravitational force,
+- <span class="arithmatex">\( G \)</span> = gravitational constant (<span class="arithmatex">\( 6.674 \times 10^{-11} \, \text{Nm}^2/\text{kg}^2 \)</span>),
+- <span class="arithmatex">\( M \)</span> = mass of the Earth (<span class="arithmatex">\( 5.972 \times 10^{24} \, \text{kg} \)</span>),
+- <span class="arithmatex">\( m \)</span> = mass of the payload,
+- <span class="arithmatex">\( r \)</span> = distance between the center of Earth and the payload.</p>
+<h3 id="orbital-mechanics">Orbital Mechanics</h3>
+<p>When an object is released near Earth, the trajectory depends on the initial conditions, including the position, velocity, and altitude. These trajectories can be:</p>
+<ol>
+<li><strong>Parabolic Trajectory</strong>: The object follows a path that eventually returns to Earth. It is the case of an object launched at escape velocity.</li>
+<li><strong>Elliptical Trajectory</strong>: The object follows an elliptical orbit and eventually returns to Earth, depending on the initial velocity.</li>
+<li><strong>Hyperbolic Trajectory</strong>: The object escapes Earth's gravity and does not return. This happens when the object’s speed exceeds the escape velocity.</li>
+</ol>
+<h3 id="escape-velocity">Escape Velocity</h3>
+<p>The escape velocity is the speed needed for an object to break free from Earth's gravitational influence without further propulsion. It is given by:</p>
+<div class="arithmatex">\[
+v_{\text{escape}} = \sqrt{\frac{2GM}{r}}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\( v_{\text{escape}} \)</span> is the escape velocity,
+- <span class="arithmatex">\( r \)</span> is the distance from Earth's center to the payload.</p>
+<hr/>
+<h2 id="2-numerical-analysis-of-trajectories">2. Numerical Analysis of Trajectories</h2>
+<p>The motion of a freely released payload can be simulated using Newton's Law of Gravitation and numerical methods, such as the <strong>Euler method</strong> or <strong>Runge-Kutta method</strong>.</p>
+<p>We will consider the following initial conditions:
+- Initial position <span class="arithmatex">\( r_0 \)</span>,
+- Initial velocity <span class="arithmatex">\( v_0 \)</span>,
+- The payload is initially at rest or moving with an initial velocity.</p>
+<p>The key equations governing the motion are:</p>
+<ol>
+<li>
+<p>Gravitational force, which results in acceleration:
+   $$ \vec{a} = \frac{F}{m} = -\frac{GM}{r^2} \hat{r} $$</p>
+</li>
+<li>
+<p>Velocity and position update through numerical integration (Euler method):
+   $$ \vec{v}(t+dt) = \vec{v}(t) + \vec{a}(t) dt $$
+   $$ \vec{r}(t+dt) = \vec{r}(t) + \vec{v}(t) dt $$</p>
+</li>
+</ol>
+<p>Where:
+- <span class="arithmatex">\( \vec{r}(t) \)</span> is the position vector at time <span class="arithmatex">\( t \)</span>,
+- <span class="arithmatex">\( \vec{v}(t) \)</span> is the velocity vector at time <span class="arithmatex">\( t \)</span>,
+- <span class="arithmatex">\( dt \)</span> is the time step for numerical integration.</p>
+<hr/>
+<h2 id="3-implementation-python-code-for-simulation">3. Implementation (Python Code for Simulation)</h2>
+<h3 id="python-code-to-simulate-payload-trajectories">Python Code to Simulate Payload Trajectories</h3>
+<p>```python
+import numpy as np
+import matplotlib.pyplot as plt</p>
+<h1 id="constants">Constants</h1>
+<p>G = 6.674e-11  # gravitational constant (Nm^2/kg^2)
+M = 5.972e24   # mass of Earth (kg)
+R = 6371e3     # radius of Earth (meters)</p>
+<h1 id="initial-conditions-position-and-velocity">Initial conditions (position and velocity)</h1>
+<p>r0 = np.array([R + 500e3, 0])  # initial position (500 km above Earth's surface)
+v0 = np.array([0, 7.12e3])     # initial velocity (horizontal velocity at low Earth orbit)
+dt = 1  # time step (seconds)
+t_max = 3600  # simulation time (1 hour)</p>
+<h1 id="function-to-calculate-gravitational-force-and-acceleration">Function to calculate gravitational force and acceleration</h1>
+<p>def gravitational_acceleration(r):
+    r_mag = np.linalg.norm(r)
+    return -G * M * r / r_mag**3</p>
+<h1 id="euler-method-to-solve-the-equations-of-motion">Euler method to solve the equations of motion</h1>
+<p>def simulate_trajectory(r0, v0, dt, t_max):
+    r = r0
+    v = v0
+    t = 0
+    positions = [r0]</p>
+<pre><code>while t &lt; t_max:
+    a = gravitational_acceleration(r)
+    v = v + a * dt
+    r = r + v * dt
+    positions.append(r)
+    t += dt
+
+return np.array(positions)
+</code></pre>
+<h1 id="simulate-the-trajectory">Simulate the trajectory</h1>
+<p>positions = simulate_trajectory(r0, v0, dt, t_max)</p>
+<h1 id="plot-the-trajectory">Plot the trajectory</h1>
+<p>plt.figure(figsize=(10, 6))
+plt.plot(positions[:, 0] / 1e3, positions[:, 1] / 1e3, label="Payload Trajectory (km)")
+plt.xlabel("Distance along X (km)")
+plt.ylabel("Distance along Y (km)")
+plt.title("Trajectory of Payload Released Near Earth")
+plt.grid(True)
+plt.legend()
+plt.show()</p>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<h2 id="5-conclusion">5. Conclusion</h2>
+<ul>
+<li>
+<p><strong>Trajectory Types</strong>: The simulation demonstrates how varying the initial velocity of the payload can result in different types of trajectories—parabolic, elliptical, or hyperbolic. These trajectories play a crucial role in determining whether the payload will return to Earth, enter orbit, or escape Earth's gravity.</p>
+</li>
+<li>
+<p><strong>Space Mission Implications</strong>: Understanding these trajectories is essential for space mission planning. By calculating escape velocities and analyzing possible orbital paths, mission planners can determine the optimal launch conditions for deploying satellites or executing interplanetary missions.</p>
+</li>
+<li>
+<p><strong>Numerical Methods</strong>: The Euler method provided an approximation of the trajectory, though more accurate methods like Runge-Kutta could improve the precision of longer simulations. The results highlight the importance of numerical simulations in modeling complex space scenarios.</p>
+</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
