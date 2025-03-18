@@ -6,7 +6,7 @@ Projectile motion follows the principles of kinematics and Newton’s laws of mo
 ### Equations of Motion:
 - $x = v_0 \cos(\theta) t$ (Horizontal displacement)
 - $y = v_0 \sin(\theta) t - \frac{1}{2} g t^2$ (Vertical displacement)
-
+#2
 ### Time of Flight:
 - $$T = \frac{2 v_0 \sin(\theta)}{g}$$
 
