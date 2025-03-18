@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Investigating the Dynamics of a Forced Damped Pendulum - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Investigating the Dynamics of a Forced Damped Pendulum";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,8 +48,34 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Investigating the Range as a Function of the Angle of Projection</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Investigating the Dynamics of a Forced Damped Pendulum</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-small-angle-oscillations">For Small-Angle Oscillations:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#energy-of-the-system">Energy of the System:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-dynamics">2. Analysis of Dynamics</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#influence-of-damping-coefficient-gamma">Influence of Damping Coefficient \( \gamma \):</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#effect-of-driving-amplitude-and-frequency">Effect of Driving Amplitude and Frequency:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#transition-to-chaotic-motion">Transition to Chaotic Motion:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-implementation">4. Implementation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-code-for-simulation">Python Code for Simulation</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +189,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Investigating the Dynamics of a Forced Damped Pendulum</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,102 +197,128 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2">Problem 2</h1>
-<ol>
-<li>General Equations of Motion in Two Dimensions**<br/>
-Using kinematic equations for motion under constant acceleration:  </li>
-</ol>
-<p>$$
-x = x_0 + v_{0x} t</p>
+<h1 id="investigating-the-dynamics-of-a-forced-damped-pendulum">Investigating the Dynamics of a Forced Damped Pendulum</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<p>The forced damped pendulum is described by the second-order nonlinear differential equation:</p>
 <div class="arithmatex">\[
-$$ y = y_0 + v_{0y} t - \frac{1}{2} g t^2
+\theta''(t) + \gamma \theta'(t) + \omega_0^2 \sin(\theta(t)) = F_0 \cos(\omega t)
 \]</div>
-<p>where:<br/>
-- <span class="arithmatex">\( x_0, y_0 \)</span> = Initial position (often taken as 0)<br/>
-- <span class="arithmatex">\( v_{0x} = v_0 \cos\theta \)</span> (horizontal velocity)<br/>
-- <span class="arithmatex">\( v_{0y} = v_0 \sin\theta \)</span> (initial vertical velocity)  </p>
-<ol>
-<li>
-<p>Velocity Components at Any Time <span class="arithmatex">\( t \)</span>**<br/>
-[
-v_x = v_0 \cos\theta
-]
-[
-v_y = v_0 \sin\theta - g t
-]</p>
-</li>
-<li>
-<p>Velocity Magnitude and Direction**  </p>
-</li>
-<li><strong>Resultant velocity at time <span class="arithmatex">\( t \)</span>:</strong><br/>
-  [
-  v = \sqrt{v_x^2 + v_y^2}
-  ]</li>
-<li>
-<p><strong>Direction (angle <span class="arithmatex">\( \alpha \)</span> with horizontal):</strong><br/>
-  [
-  \tan\alpha = \frac{v_y}{v_x}
-  ]</p>
-</li>
-<li>
-<p>Equation of Trajectory<strong><br/>
-To express <span class="arithmatex">\( y \)</span> as a function of <span class="arithmatex">\( x \)</span>, eliminate <span class="arithmatex">\( t \)</span>:<br/>
-$$
-y = x \tan\theta - \frac{g x^2}{2 v_0^2 \cos^2\theta}
-$$
-This represents the </strong>parabolic** path of the projectile.</p>
-</li>
-<li>
-<p>Time to Reach Maximum Height**<br/>
-Since the vertical velocity becomes zero at the peak:<br/>
-[
-t_{\text{max}} = \frac{v_0 \sin\theta}{g}
-]</p>
-</li>
-<li>
-<p>Alternative Form for Maximum Height**<br/>
-Using the kinematic equation <span class="arithmatex">\( v^2 = v_0^2 + 2a s \)</span>:<br/>
-[
-H = \frac{(v_0 \sin\theta)^2}{2g}
-]</p>
-</li>
-<li>
-<p>Alternative Form for Range**<br/>
-Since <span class="arithmatex">\( R = v_x \times T \)</span>, using <span class="arithmatex">\( T = \frac{2 v_0 \sin\theta}{g} \)</span>, we get:<br/>
-[
-R = \frac{v_0^2 \sin 2\theta}{g}
-]</p>
-</li>
-</ol>
-<p>import numpy as np
-import matplotlib.pyplot as plt</p>
-<p>g = 9.81  # Acceleration due to gravity (m/s^2)</p>
-<p>v0 = float(input("Enter initial velocity (m/s): "))
-theta = float(input("Enter launch angle (degrees): "))</p>
-<p>theta_rad = np.radians(theta)</p>
-<p>T = (2 * v0 * np.sin(theta_rad)) / g  # Total time of flight
-H = (v0<strong>2 * np.sin(theta_rad)</strong>2) / (2 * g)  # Maximum height
-R = (v0**2 * np.sin(2 * theta_rad)) / g  # Horizontal range</p>
-<p>t = np.linspace(0, T, num=100)</p>
-<p>x = v0 * np.cos(theta_rad) * t  # Horizontal position
-y = v0 * np.sin(theta_rad) * t - 0.5 * g * t**2  # Vertical position</p>
-<p>plt.figure(figsize=(10, 5))
-plt.plot(x, y, label="Projectile Path", color="blue")
-plt.axhline(0, color="black", linewidth=0.5)  # Ground line
-plt.xlabel("Horizontal Distance (m)")
-plt.ylabel("Vertical Distance (m)")
-plt.title("Projectile Motion Trajectory")
+<p>Where:
+- <span class="arithmatex">\( \theta(t) \)</span> = angular displacement as a function of time,
+- <span class="arithmatex">\( \gamma \)</span> = damping coefficient,
+- <span class="arithmatex">\( \omega_0 \)</span> = natural frequency of the undamped pendulum,
+- <span class="arithmatex">\( F_0 \)</span> = amplitude of the external forcing,
+- <span class="arithmatex">\( \omega \)</span> = driving frequency of the external force.</p>
+<h3 id="for-small-angle-oscillations">For Small-Angle Oscillations:</h3>
+<p>We approximate <span class="arithmatex">\( \sin(\theta) \approx \theta \)</span>, leading to the linearized version of the equation:</p>
+<div class="arithmatex">\[
+\theta''(t) + \gamma \theta'(t) + \omega_0^2 \theta(t) = F_0 \cos(\omega t)
+\]</div>
+<h4 id="resonance-condition">Resonance Condition:</h4>
+<p>At resonance, the driving frequency matches the natural frequency:</p>
+<div class="arithmatex">\[
+\omega = \omega_0
+\]</div>
+<p>At this point, the system absorbs maximum energy from the external driving force, leading to large oscillations.</p>
+<h3 id="energy-of-the-system">Energy of the System:</h3>
+<p>The total mechanical energy <span class="arithmatex">\( E(t) \)</span> is the sum of kinetic and potential energy:</p>
+<div class="arithmatex">\[
+E(t) = \frac{1}{2} m L^2 \left(\theta'(t)\right)^2 + \frac{1}{2} m g L (1 - \cos(\theta(t)))
+\]</div>
+<p>Where:
+- <span class="arithmatex">\( m \)</span> = mass of the pendulum,
+- <span class="arithmatex">\( L \)</span> = length of the pendulum,
+- <span class="arithmatex">\( g \)</span> = gravitational acceleration.</p>
+<hr/>
+<h2 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h2>
+<h3 id="influence-of-damping-coefficient-gamma">Influence of Damping Coefficient <span class="arithmatex">\( \gamma \)</span>:</h3>
+<ul>
+<li><strong>Underdamped</strong>: When <span class="arithmatex">\( \gamma &lt; 2\sqrt{m \omega_0} \)</span>, the pendulum oscillates with decreasing amplitude.</li>
+<li><strong>Overdamped</strong>: When <span class="arithmatex">\( \gamma &gt; 2\sqrt{m \omega_0} \)</span>, the pendulum returns slowly to equilibrium without oscillating.</li>
+</ul>
+<h3 id="effect-of-driving-amplitude-and-frequency">Effect of Driving Amplitude and Frequency:</h3>
+<ul>
+<li>Increasing the <strong>driving amplitude</strong> <span class="arithmatex">\( F_0 \)</span> leads to larger oscillations.</li>
+<li>The <strong>driving frequency</strong> <span class="arithmatex">\( \omega \)</span> affects how the system absorbs energy, and when <span class="arithmatex">\( \omega = \omega_0 \)</span>, the system resonates, leading to large oscillations.</li>
+</ul>
+<h3 id="transition-to-chaotic-motion">Transition to Chaotic Motion:</h3>
+<p>When the damping or frequency deviates from the resonance point, the system can exhibit chaotic behavior. This is often seen when varying the driving frequency slightly off resonance, leading to <strong>quasiperiodic</strong> and <strong>chaotic motion</strong>.</p>
+<hr/>
+<h2 id="3-practical-applications">3. Practical Applications</h2>
+<p>The forced damped pendulum model applies to various real-world systems, such as:
+1. <strong>Energy Harvesting Devices</strong>: These systems convert mechanical vibrations into electrical energy by exploiting resonance.
+2. <strong>Suspension Bridges</strong>: Bridges experience periodic forces (e.g., from wind or traffic), and understanding resonance helps in designing structures that avoid catastrophic oscillations.
+3. <strong>Oscillating Circuits</strong>: The behavior of driven RLC circuits can be modeled similarly to a forced damped pendulum, where resonance is crucial for efficient energy transfer.</p>
+<hr/>
+<h2 id="4-implementation">4. Implementation</h2>
+<h3 id="python-code-for-simulation">Python Code for Simulation</h3>
+<p>Below is the Python code to simulate the motion of the forced damped pendulum using <strong>Runge-Kutta</strong> methods and visualize the motion for various conditions.</p>
+<p>```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp</p>
+<h1 id="parameters">Parameters</h1>
+<p>m = 1.0  # mass of the pendulum (kg)
+L = 1.0  # length of the pendulum (m)
+g = 9.8  # acceleration due to gravity (m/s^2)
+gamma = 0.2  # damping coefficient
+omega_0 = np.sqrt(g / L)  # natural frequency (rad/s)
+F_0 = 1.0  # amplitude of driving force
+omega = 1.0  # driving frequency</p>
+<h1 id="define-the-system-of-odes">Define the system of ODEs</h1>
+<p>def pendulum(t, y):
+    theta, omega_theta = y
+    dydt = [omega_theta, -gamma * omega_theta - (g / L) * np.sin(theta) + F_0 * np.cos(omega * t)]
+    return dydt</p>
+<h1 id="initial-conditions">Initial conditions</h1>
+<p>theta0 = 0.1  # initial angle (rad)
+omega_theta0 = 0.0  # initial angular velocity (rad/s)</p>
+<h1 id="time-span-for-the-solution">Time span for the solution</h1>
+<p>t_span = (0, 100)
+t_eval = np.linspace(0, 100, 10000)</p>
+<h1 id="solve-the-ode">Solve the ODE</h1>
+<p>sol = solve_ivp(pendulum, t_span, [theta0, omega_theta0], t_eval=t_eval)</p>
+<h1 id="plot-the-results">Plot the results</h1>
+<p>plt.figure(figsize=(10, 6))
+plt.plot(sol.t, sol.y[0], label='Theta (rad)', color='b')
+plt.title('Forced Damped Pendulum Motion')
+plt.xlabel('Time (s)')
+plt.ylabel('Angular Displacement (rad)')
+plt.grid(True)
 plt.legend()
-plt.grid()</p>
-<h1 id="show-key-points">Show key points</h1>
-<p>plt.scatter([R], [0], color="red", label="Range (R)")
-plt.scatter([R/2], [H], color="green", label="Max Height (H)")
-plt.legend()</p>
-<p>plt.show()</p>
-<h1 id="print-key-results">Print key results</h1>
-<p>print(f"Time of Flight: {T:.2f} s")
-print(f"Maximum Height: {H:.2f} m")
-print(f"Range: {R:.2f} m")</p>
+plt.show()</p>
+<h1 id="plot-phase-diagram">Plot phase diagram</h1>
+<p>plt.figure(figsize=(10, 6))
+plt.plot(sol.y[0], sol.y[1], label='Phase Space')
+plt.title('Phase Space of the Forced Damped Pendulum')
+plt.xlabel('Theta (rad)')
+plt.ylabel('Angular Velocity (rad/s)')
+plt.grid(True)
+plt.legend()
+plt.show()</p>
+<p><img alt="alt text" src="../image-2.png"/>
+<img alt="alt text" src="../image-3.png"/></p>
+<h1 id="5-discussion">5. Discussion</h1>
+<h3 id="damping-effects">Damping Effects</h3>
+<p>The damping coefficient <span class="arithmatex">\( \gamma \)</span> has a significant effect on the pendulum's behavior. When the damping is small (underdamped system), the pendulum oscillates, but the amplitude gradually decreases over time. As the damping coefficient increases, the system's oscillations are damped out more quickly, and if <span class="arithmatex">\( \gamma \)</span> becomes very large (overdamped system), the pendulum will not oscillate at all but will slowly return to its equilibrium position. In the case of moderate damping, the system will exhibit damped oscillations, where the amplitude decreases but the system still oscillates for a period.</p>
+<p>For the forced damped pendulum, a critical point occurs when the damping coefficient approaches a value that corresponds to the natural frequency. At this point, the system may behave in a more predictable way, or exhibit chaos under certain conditions.</p>
+<h3 id="resonance-and-energy-transfer">Resonance and Energy Transfer</h3>
+<p>Resonance occurs when the driving frequency <span class="arithmatex">\( \omega \)</span> matches the natural frequency <span class="arithmatex">\( \omega_0 \)</span> of the system. At this point, the pendulum will absorb maximum energy from the external driving force, leading to large oscillations. If the system remains underdamped, the oscillations will grow in amplitude, potentially causing large swings in the pendulum, while in the overdamped case, the oscillations will decrease rapidly, and the system will return to equilibrium more quickly.</p>
+<p>Resonance is a key phenomenon in many real-world applications. In energy harvesting devices, resonance is used to maximize the energy transfer from mechanical vibrations to electrical energy. In suspension bridges, resonance at certain frequencies must be avoided to prevent excessive oscillations.</p>
+<h3 id="chaotic-motion-and-transition-to-chaos">Chaotic Motion and Transition to Chaos</h3>
+<p>When the driving force is applied at a frequency that is slightly detuned from the system's natural frequency, or when other parameters like damping and amplitude are adjusted, the forced damped pendulum may exhibit <strong>chaotic motion</strong>. This is particularly evident in the <strong>phase space</strong> diagrams, where regular periodic behavior gives way to a more complex, unpredictable motion. The system's trajectory in phase space becomes increasingly erratic as it moves away from the fixed point, showing sensitivity to initial conditions—a hallmark of chaotic systems.</p>
+<p>The transition from regular oscillations to chaotic motion can be illustrated using <strong>Poincaré sections</strong> and <strong>bifurcation diagrams</strong>. These diagrams are particularly useful in understanding how small changes in parameters (such as driving frequency or damping) can lead to significant changes in the system's behavior.</p>
+<hr/>
+<h1 id="6-conclusion">6. Conclusion</h1>
+<p>The forced damped pendulum provides an excellent example of how physical systems with both damping and periodic forcing can exhibit a wide range of behaviors, from regular oscillations to complex chaotic dynamics. Through the use of numerical simulations, we can visualize and better understand the system's behavior across different regimes of damping, driving amplitude, and frequency.</p>
+<ul>
+<li><strong>Damping</strong>: The system moves from underdamped (where the pendulum oscillates with decreasing amplitude) to overdamped (where the pendulum slowly returns to equilibrium without oscillating) as the damping coefficient increases.</li>
+<li><strong>Resonance</strong>: At resonance, the pendulum absorbs maximum energy from the driving force, leading to large oscillations.</li>
+<li><strong>Chaotic Behavior</strong>: As the driving frequency or damping coefficient is varied, the pendulum may transition from periodic to chaotic motion, which can be studied through phase portraits, Poincaré sections, and bifurcation diagrams.</li>
+</ul>
+<p>This task highlights the importance of resonance and chaos in both physics and engineering, providing insights into energy harvesting, structural design, and mechanical resonance. The model can be extended to more complex systems by introducing nonlinear damping, non-periodic driving forces, or other real-world constraints such as air resistance.</p>
+<p>By experimenting with the damping coefficient, driving frequency, and amplitude, we can better understand how these parameters affect the system's dynamics, and apply this knowledge to optimize real-world systems like oscillating circuits, suspension bridges, and energy harvesting devices.</p>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
