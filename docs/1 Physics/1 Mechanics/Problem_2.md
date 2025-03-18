@@ -37,9 +37,9 @@ v_y = v_0 \sin\theta - g t
 
 4. Equation of Trajectory**  
 To express \( y \) as a function of \( x \), eliminate \( t \):  
-\[
+$$
 y = x \tan\theta - \frac{g x^2}{2 v_0^2 \cos^2\theta}
-\]
+$$
 This represents the **parabolic** path of the projectile.
 
 5. Time to Reach Maximum Height**  
