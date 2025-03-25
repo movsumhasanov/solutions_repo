@@ -240,7 +240,7 @@ v = \frac{2 \pi r}{T}
 <div class="arithmatex">\[
 T^2 = \frac{4 \pi^2 r^3}{G M}
 \]</div>
-<p>This shows that the square of the orbital period <span class="arithmatex">\( T^2 \)</span> is proportional to the cube of the orbital radius <span class="arithmatex">\( r^3 \)</span>, which is Kepler's Third Law.</p>
+<p>This shows that the square of the orbital period ( T^2 ) is proportional to the cube of the orbital radius <span class="arithmatex">\( r^3 \)</span>, which is Kepler's Third Law.</p>
 <hr/>
 <h2 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h2>
 <h3 id="implications-of-keplers-third-law">Implications of Kepler's Third Law:</h3>
@@ -294,6 +294,25 @@ plt.grid(True)
 plt.legend()
 plt.show()</p>
 <p><img alt="alt text" src="../image.png"/></p>
+<p>import numpy as np
+import matplotlib.pyplot as plt</p>
+<h1 id="define-planetary-data-au-and-years">Define planetary data (AU and years)</h1>
+<p>planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+orbit_radii = np.array([0.39, 0.72, 1.00, 1.52, 5.20, 9.58, 19.22, 30.05])  # AU
+orbital_periods = np.array([0.24, 0.62, 1.00, 1.88, 11.86, 29.46, 84.01, 164.79])  # Years</p>
+<h1 id="verify-t2-vs-r3-relationship">Verify T^2 vs r^3 relationship</h1>
+<p>T_squared = orbital_periods ** 2
+r_cubed = orbit_radii ** 3</p>
+<h1 id="plotting">Plotting</h1>
+<p>plt.figure(figsize=(8,6))
+plt.plot(r_cubed, T_squared, 'ro', label="Planetary Data")
+plt.xlabel("Orbital Radius Cubed (AU^3)")
+plt.ylabel("Orbital Period Squared (Years^2)")
+plt.title("Verification of Kepler's Third Law")
+plt.legend()
+plt.grid()
+plt.show()</p>
+<p><img alt="alt text" src="../image-3.png"/></p>
 <h2 id="5-discussion">5. Discussion</h2>
 <h3 id="deducing-orbital-periods">Deducing Orbital Periods</h3>
 <p>The plot generated from the simulation clearly shows a linear relationship between <span class="arithmatex">\( T^2 \)</span> and <span class="arithmatex">\( r^3 \)</span>, confirming the validity of Kepler’s Third Law. This verifies that as the orbital radius <span class="arithmatex">\( r \)</span> increases, the orbital period <span class="arithmatex">\( T \)</span> increases as well, and specifically, the square of the orbital period is directly proportional to the cube of the orbital radius. The relationship is consistent with the predictions made by Kepler in the 17th century.</p>
