@@ -263,87 +263,157 @@ plt.show()
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 
-# Simulation parameters
-wave_length = 1.0
-k = 2 * np.pi / wave_length  # Wave number
-A = 1.0  # Amplitude
-freq = 1.0
-omega = 2 * np.pi * freq  # Angular frequency
+# Define wave parameters
+A = 1  # Amplitude
+lambda_ = 1  # Wavelength
+k = 2 * np.pi / lambda_  # Wave number
+omega = 2 * np.pi  # Angular frequency
+phase_difference = np.pi / 2  # Phase difference (constant)
 
-def wave_pattern(x, y, sources):
-    psi = np.zeros_like(x)
-    for (x0, y0) in sources:
-        r = np.sqrt((x - x0) ** 2 + (y - y0) ** 2)
-        psi += A * np.cos(k * r)
-    return psi
+# Define time and space grid
+t = np.linspace(0, 10, 500)  # Time from 0 to 10 seconds
+x = np.linspace(0, 10, 500)  # Space from 0 to 10 meters
+X, T = np.meshgrid(x, t)
 
-# Grid setup
-x = np.linspace(-5, 5, 300)
-y = np.linspace(-5, 5, 300)
-X, Y = np.meshgrid(x, y)
+# Define the two waves
+wave1 = A * np.cos(k * X - omega * T)  # First wave
+wave2 = A * np.cos(k * X - omega * T + phase_difference)  # Second wave with phase difference
 
-# Define sources as vertices of an equilateral triangle
-sources = [(-2, -1), (2, -1), (0, 2)]
-Z = wave_pattern(X, Y, sources)
+# Total displacement from the superposition of waves
+total_wave = wave1 + wave2
 
-# Visualization
-plt.figure(figsize=(8, 6))
-plt.contourf(X, Y, Z, levels=100, cmap='viridis')
-plt.colorbar(label='Wave Amplitude')
-plt.scatter(*zip(*sources), color='red', marker='o', label='Wave Sources')
-plt.legend()
-plt.title('Interference Pattern of Water Surface Waves')
+# Plotting the waves and their interference
+plt.figure(figsize=(10, 6))
+
+# Plot the first wave
+plt.subplot(3, 1, 1)
+plt.title("Wave 1")
+plt.contourf(X, T, wave1, levels=50, cmap='viridis')
+plt.colorbar(label='Amplitude')
+plt.xlabel('Position (x)')
+plt.ylabel('Time (t)')
+
+# Plot the second wave
+plt.subplot(3, 1, 2)
+plt.title("Wave 2 (with phase difference)")
+plt.contourf(X, T, wave2, levels=50, cmap='viridis')
+plt.colorbar(label='Amplitude')
+plt.xlabel('Position (x)')
+plt.ylabel('Time (t)')
+
+# Plot the total interference pattern
+plt.subplot(3, 1, 3)
+plt.title("Interference Pattern (Wave 1 + Wave 2)")
+plt.contourf(X, T, total_wave, levels=50, cmap='viridis')
+plt.colorbar(label='Amplitude')
+plt.xlabel('Position (x)')
+plt.ylabel('Time (t)')
+
+plt.tight_layout()
 plt.show()
+
 </code></pre>
-<p><img alt="alt text" src="../image-2.png"/></p>
+<p><img alt="alt text" src="../image-5.png"/></p>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
-from scipy.constants import g
 
-# Function to compute the range of a projectile
-def projectile_range(v0, theta, g=9.81):
-    theta_rad = np.radians(theta)
-    return (v0**2 * np.sin(2 * theta_rad)) / g
+# Define wave parameters
+A = 1  # Amplitude
+lambda_ = 1  # Wavelength
+k = 2 * np.pi / lambda_  # Wave number
+omega = 2 * np.pi  # Angular frequency
+phase_difference = np.pi / 2  # Phase difference (constant)
 
-# Define parameters
-v0 = 50  # Initial velocity in m/s
-angles = np.linspace(0, 90, 100)  # Angle range from 0 to 90 degrees
-ranges = [projectile_range(v0, theta) for theta in angles]
+# Define space and time grid
+x = np.linspace(0, 10, 500)  # Space from 0 to 10 meters
+t = 5  # Time point to plot the waves
 
-# Plot the range as a function of launch angle
-plt.figure(figsize=(8,6))
-plt.plot(angles, ranges, label='Range vs Angle', color='b')
-plt.xlabel("Launch Angle (degrees)")
-plt.ylabel("Range (m)")
-plt.title("Projectile Range as a Function of Angle")
+# Define the two waves
+wave1 = A * np.cos(k * x - omega * t)  # First wave
+wave2 = A * np.cos(k * x - omega * t + phase_difference)  # Second wave with phase difference
+
+# Total displacement from the superposition of waves
+total_wave = wave1 + wave2
+
+# Plotting the waves
+plt.figure(figsize=(10, 6))
+
+# Plot the first wave
+plt.plot(x, wave1, label="Wave 1", color='blue')
+
+# Plot the second wave
+plt.plot(x, wave2, label="Wave 2 (with phase difference)", color='orange')
+
+# Plot the total interference pattern
+plt.plot(x, total_wave, label="Total Interference", color='green', linestyle='--')
+
+# Adding labels and title
+plt.title("Coherent Waves with Constant Phase Difference")
+plt.xlabel("Position (x)")
+plt.ylabel("Amplitude")
 plt.legend()
-plt.grid()
-plt.show()
 
-# Simulating projectile motion for a given angle
-def projectile_trajectory(v0, theta, g=9.81):
-    theta_rad = np.radians(theta)
-    t_flight = (2 * v0 * np.sin(theta_rad)) / g  # Total flight time
-    t = np.linspace(0, t_flight, num=100)
-    x = v0 * np.cos(theta_rad) * t
-    y = v0 * np.sin(theta_rad) * t - 0.5 * g * t**2
-    return x, y
-
-# Plot trajectories for different angles
-plt.figure(figsize=(8,6))
-for theta in [15, 30, 45, 60, 75]:
-    x, y = projectile_trajectory(v0, theta)
-    plt.plot(x, y, label=f'{theta} degrees')
-
-plt.xlabel("Horizontal Distance (m)")
-plt.ylabel("Vertical Distance (m)")
-plt.title("Projectile Motion for Different Angles")
-plt.legend()
-plt.grid()
+# Show the plot
+plt.grid(True)
 plt.show()
 </code></pre>
-<p><img alt="alt text" src="../image.png"/>
-<img alt="alt text" src="../image-1.png"/></p>
+<p><img alt="alt text" src="../image-6.png"/></p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Define wave parameters
+A = 1  # Amplitude
+lambda_ = 1  # Wavelength
+k = 2 * np.pi / lambda_  # Wave number
+omega = 2 * np.pi  # Angular frequency
+phase_difference = np.pi / 2  # Phase difference (constant)
+
+# Define space and time grid
+x = np.linspace(0, 10, 500)  # Space from 0 to 10 meters
+t = np.linspace(0, 5, 500)  # Time from 0 to 5 seconds
+
+# Create meshgrid for space and time
+X, T = np.meshgrid(x, t)
+
+# Define the two waves
+wave1 = A * np.cos(k * X - omega * T)  # First wave
+wave2 = A * np.cos(k * X - omega * T + phase_difference)  # Second wave with phase difference
+
+# Total displacement from the superposition of waves
+total_wave = wave1 + wave2
+
+# Plotting the waves in a 3D surface plot
+fig = plt.figure(figsize=(10, 6))
+
+# Plot wave 1
+ax1 = fig.add_subplot(131, projection='3d')
+ax1.plot_surface(X, T, wave1, cmap='viridis')
+ax1.set_title("Wave 1")
+ax1.set_xlabel("Position (x)")
+ax1.set_ylabel("Time (t)")
+ax1.set_zlabel("Amplitude")
+
+# Plot wave 2
+ax2 = fig.add_subplot(132, projection='3d')
+ax2.plot_surface(X, T, wave2, cmap='plasma')
+ax2.set_title("Wave 2 (with phase difference)")
+ax2.set_xlabel("Position (x)")
+ax2.set_ylabel("Time (t)")
+ax2.set_zlabel("Amplitude")
+
+# Plot total interference pattern
+ax3 = fig.add_subplot(133, projection='3d')
+ax3.plot_surface(X, T, total_wave, cmap='inferno')
+ax3.set_title("Interference Pattern")
+ax3.set_xlabel("Position (x)")
+ax3.set_ylabel("Time (t)")
+ax3.set_zlabel("Amplitude")
+
+</code></pre>
+<p><img alt="alt text" src="../image-7.png"/></p>
+<h1 id="adjust-layout-and-show-the-plots">Adjust layout and show the plots</h1>
+<p>plt.tight_layout()
+plt.show()</p>
 <h2 id="analysis-of-range">Analysis of Range</h2>
 <h3 id="wave-interference-zones">Wave Interference Zones</h3>
 <p>Using the superposition principle:
