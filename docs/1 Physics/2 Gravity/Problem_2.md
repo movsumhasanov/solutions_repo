@@ -54,7 +54,7 @@ $$
 
 Where:
 - \( v_3 \) = third cosmic velocity (m/s),
-- \( M_{\text{sun}} \) = mass of the Sun (\(1.989 \times 10^{30} \, \text{kg}\)),
+- ( M_{\text{sun}} \) = mass of the Sun (\(1.989 \times 10^{30} \, \text{kg}\)),
 - \( r_{\text{sun}} \) = distance from the Sun to the celestial body (m).
 
 ---
