@@ -75,30 +75,6 @@ plt.show()
 ```
 ![alt text](image-3.png)
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Define planetary data (AU and years)
-planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
-orbit_radii = np.array([0.39, 0.72, 1.00, 1.52, 5.20, 9.58, 19.22, 30.05])  # AU
-orbital_periods = np.array([0.24, 0.62, 1.00, 1.88, 11.86, 29.46, 84.01, 164.79])  # Years
-
-# Verify T^2 vs r^3 relationship
-T_squared = orbital_periods ** 2
-r_cubed = orbit_radii ** 3
-
-# Plotting
-plt.figure(figsize=(8,6))
-plt.plot(r_cubed, T_squared, 'ro', label="Planetary Data")
-plt.xlabel("Orbital Radius Cubed (AU^3)")
-plt.ylabel("Orbital Period Squared (Years^2)")
-plt.title("Verification of Kepler's Third Law")
-plt.legend()
-plt.grid()
-plt.show()
-```
-![alt text](image-4.png)
 
 
 
