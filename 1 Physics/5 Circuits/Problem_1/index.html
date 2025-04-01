@@ -78,6 +78,50 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#equivalent-resistance-using-graph-theory">Equivalent Resistance Using Graph Theory</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graph-theory-approach-to-circuit-analysis">Graph Theory Approach to Circuit Analysis</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#types-of-resistor-combinations">Types of Resistor Combinations</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-series-combination">1. Series Combination</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-parallel-combination">2. Parallel Combination</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-complex-networks-bridges-loops-etc">3. Complex Networks (Bridges, Loops, etc.)</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithm-for-calculating-equivalent-resistance-using-graph-theory">Algorithm for Calculating Equivalent Resistance Using Graph Theory</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-construct-graph-representation">Step 1: Construct Graph Representation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-identify-and-reduce-series-resistors">Step 2: Identify and Reduce Series Resistors</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-identify-and-reduce-parallel-resistors">Step 3: Identify and Reduce Parallel Resistors</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#step-4-handle-complex-circuits-loops-bridges-etc">Step 4: Handle Complex Circuits (Loops, Bridges, etc.)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-output-the-final-equivalent-resistance">Step 5: Output the Final Equivalent Resistance</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example-cases">Example Cases</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-1-simple-series-circuit">Example 1: Simple Series Circuit</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#example-2-parallel-circuit">Example 2: Parallel Circuit</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#example-3-complex-circuit-wheatstone-bridge">Example 3: Complex Circuit (Wheatstone Bridge)</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +216,94 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h3 id="equivalent-resistance-using-graph-theory"><strong>Equivalent Resistance Using Graph Theory</strong></h3>
+<h4 id="motivation"><strong>Motivation</strong></h4>
+<p>Electrical circuits consist of resistors arranged in <strong>series, parallel, or mixed configurations</strong>. Calculating the <strong>equivalent resistance</strong> helps determine how a circuit behaves electrically, which is crucial in designing <strong>efficient electrical networks</strong>.  </p>
+<p>Traditionally, circuits are analyzed using <strong>Ohm’s Law</strong> and <strong>Kirchhoff’s Rules</strong>, but <strong>graph theory</strong> offers a <strong>systematic and automated</strong> approach. Representing a circuit as a <strong>graph</strong> allows for efficient <strong>reduction of resistors</strong> using algorithms, making it useful in circuit simulation, optimization, and large-scale network analysis.  </p>
+<hr/>
+<h3 id="graph-theory-approach-to-circuit-analysis"><strong>Graph Theory Approach to Circuit Analysis</strong></h3>
+<p>A circuit can be represented as a <strong>graph</strong>, where:<br/>
+- <strong>Nodes (vertices)</strong> represent circuit junctions.<br/>
+- <strong>Edges</strong> represent resistors with weights equal to their resistance values.<br/>
+- <strong>Graph reductions</strong> simplify complex resistor networks step by step.  </p>
+<hr/>
+<h3 id="types-of-resistor-combinations"><strong>Types of Resistor Combinations</strong></h3>
+<h4 id="1-series-combination"><strong>1. Series Combination</strong></h4>
+<ul>
+<li>Resistors connected end-to-end.  </li>
+<li><strong>Graph representation</strong>: A direct path between two nodes.  </li>
+<li><strong>Formula</strong>:<br/>
+<span class="arithmatex">\(<span class="arithmatex">\(\[
+  R_{\text{eq}} = R_1 + R_2 + \dots + R_n
+  \]\)</span>\)</span></li>
+</ul>
+<p>📌 <strong>Graph Reduction</strong>: Merge nodes into a single edge with summed resistance.  </p>
+<h4 id="2-parallel-combination"><strong>2. Parallel Combination</strong></h4>
+<ul>
+<li>Resistors share the same two nodes.  </li>
+<li><strong>Graph representation</strong>: Multiple edges between the same pair of nodes.  </li>
+<li><strong>Formula</strong>:<br/>
+<span class="arithmatex">\(<span class="arithmatex">\(\[
+  \frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
+  \]\)</span>\)</span></li>
+</ul>
+<p>📌 <strong>Graph Reduction</strong>: Replace multiple edges with a single edge of equivalent resistance.  </p>
+<h4 id="3-complex-networks-bridges-loops-etc"><strong>3. Complex Networks (Bridges, Loops, etc.)</strong></h4>
+<ul>
+<li>Circuits with <strong>mixed connections</strong> or <strong>cycles</strong> (e.g., Wheatstone Bridge).  </li>
+<li><strong>Graph representation</strong>: <strong>Cycles</strong> in the circuit graph.  </li>
+<li><strong>Solution Methods</strong>:  </li>
+<li><strong>Graph traversal (DFS/BFS)</strong> to detect connectivity.  </li>
+<li><strong>Transformations</strong> to reduce components.  </li>
+<li><strong>Numerical methods</strong> (e.g., Kirchhoff’s Laws, Mesh Analysis).  </li>
+</ul>
+<hr/>
+<h3 id="algorithm-for-calculating-equivalent-resistance-using-graph-theory"><strong>Algorithm for Calculating Equivalent Resistance Using Graph Theory</strong></h3>
+<h4 id="step-1-construct-graph-representation"><strong>Step 1: Construct Graph Representation</strong></h4>
+<ul>
+<li><strong>Nodes</strong> = Junctions in the circuit.  </li>
+<li><strong>Edges</strong> = Resistors (weighted by resistance value).  </li>
+</ul>
+<h4 id="step-2-identify-and-reduce-series-resistors"><strong>Step 2: Identify and Reduce Series Resistors</strong></h4>
+<ul>
+<li>Use <strong>graph traversal (DFS/BFS)</strong> to detect <strong>linear chains</strong> of resistors.  </li>
+<li>Replace series resistors with a <strong>single equivalent resistor</strong>.  </li>
+</ul>
+<h4 id="step-3-identify-and-reduce-parallel-resistors"><strong>Step 3: Identify and Reduce Parallel Resistors</strong></h4>
+<ul>
+<li>Detect <strong>multiple edges</strong> between the same pair of nodes.  </li>
+<li>Replace them with a <strong>single equivalent resistor</strong> using the parallel formula.  </li>
+</ul>
+<h4 id="step-4-handle-complex-circuits-loops-bridges-etc"><strong>Step 4: Handle Complex Circuits (Loops, Bridges, etc.)</strong></h4>
+<ul>
+<li>Use <strong>Kirchhoff’s Laws or Numerical Methods</strong> for cycles.  </li>
+<li>Reduce <strong>step by step</strong> until only two nodes remain.  </li>
+</ul>
+<h4 id="step-5-output-the-final-equivalent-resistance"><strong>Step 5: Output the Final Equivalent Resistance</strong></h4>
+<hr/>
+<h3 id="example-cases"><strong>Example Cases</strong></h3>
+<h4 id="example-1-simple-series-circuit"><strong>Example 1: Simple Series Circuit</strong></h4>
+<p>📌 <strong>Graph Representation:</strong><br/>
+- Nodes: <strong>A → B → C</strong><br/>
+- Edges: <strong>A-B (5Ω), B-C (10Ω)</strong><br/>
+📌 <strong>Reduction:</strong> </p>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<h4 id="example-2-parallel-circuit"><strong>Example 2: Parallel Circuit</strong></h4>
+<p>📌 <strong>Graph Representation:</strong><br/>
+- Nodes: <strong>A, B</strong><br/>
+- Edges: <strong>A-B (5Ω), A-B (10Ω)</strong><br/>
+📌 <strong>Reduction:</strong> </p>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<h4 id="example-3-complex-circuit-wheatstone-bridge"><strong>Example 3: Complex Circuit (Wheatstone Bridge)</strong></h4>
+<p>📌 <strong>Graph Representation:</strong><br/>
+- <strong>5 Nodes</strong>, <strong>6 Edges</strong><br/>
+- Requires <strong>Graph Reduction + Kirchhoff’s Laws</strong>.<br/>
+<img alt="alt text" src="../image.png"/>
+<img alt="alt text" src="../image-3.png"/></p>
+<hr/>
+<hr/>
+<h3 id="conclusion"><strong>Conclusion</strong></h3>
+<p>Graph theory provides an <strong>efficient and structured</strong> way to <strong>analyze circuits</strong>, making it ideal for <strong>large and complex networks</strong>. This approach enables automation, making it useful for both <strong>theoretical studies and real-world circuit design</strong>.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
