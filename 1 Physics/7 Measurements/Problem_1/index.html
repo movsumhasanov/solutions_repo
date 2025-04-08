@@ -172,6 +172,75 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="physics-lab-report">Physics Lab Report</h1>
+<h2 id="problem-1-measuring-earths-gravitational-acceleration-with-a-pendulum">Problem 1: Measuring Earth's Gravitational Acceleration with a Pendulum</h2>
+<hr/>
+<h3 id="motivation">Motivation</h3>
+<p>The acceleration <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> due to gravity is a fundamental constant that influences a wide range of physical phenomena. Measuring <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> accurately is crucial for understanding gravitational interactions, designing structures, and conducting experiments in various fields. One classic method for determining <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> is through the oscillations of a simple pendulum, where the period of oscillation depends on the local gravitational field.</p>
+<hr/>
+<h2 id="theoretical-foundation">Theoretical Foundation</h2>
+<p>A simple pendulum undergoing small-angle oscillations behaves like a simple harmonic oscillator.</p>
+<h3 id="formula-for-the-period">Formula for the Period:</h3>
+<div class="arithmatex">\[ T = 2\pi \sqrt{\frac{L}{g}} \]</div>
+<p>Where:</p>
+<ul>
+<li>
+<div class="arithmatex">\[T: Period of oscillation (s)  \]</div>
+</li>
+<li>
+<div class="arithmatex">\[L: Length of the pendulum (m) \]</div>
+</li>
+<li>
+<div class="arithmatex">\[g: Gravitational acceleration (m/s²)\]</div>
+</li>
+</ul>
+<p>Rearranged to solve for g:</p>
+<div class="arithmatex">\[g = \frac{4\pi^2 L}{T^2}\]</div>
+<p>This formula assumes a small-angle approximation: $$ \theta &lt; 15^\circ $$</p>
+<hr/>
+<h2 id="analysis-of-range">Analysis of Range</h2>
+<h3 id="1-measuring-period-from-10-oscillations">1. Measuring Period from 10 Oscillations:</h3>
+<p>Take 10 measurements of the time for 10 full oscillations:</p>
+<div class="arithmatex">\[ \overline{T}_{10} = \frac{1}{n} \sum_{i=1}^{n} T_{10,i} \]</div>
+<p>Convert to a single oscillation:</p>
+<div class="arithmatex">\[ T = \frac{\overline{T}_{10}}{10} \]</div>
+<h3 id="2-uncertainty-in-time">2. Uncertainty in Time:</h3>
+<p>Calculate standard deviation:</p>
+<div class="arithmatex">\[ \sigma_T = \sqrt{ \frac{1}{n-1} \sum_{i=1}^{n} (T_{10,i} - \overline{T}_{10})^2 } \]</div>
+<p>Uncertainty in the average time:</p>
+<div class="arithmatex">\[ \Delta T_{10} = \frac{\sigma_T}{\sqrt{n}} \]</div>
+<p>Uncertainty in period:</p>
+<div class="arithmatex">\[ \Delta T = \frac{\Delta T_{10}}{10} \]</div>
+<h3 id="3-uncertainty-in-length">3. Uncertainty in Length:</h3>
+<p>If ruler resolution is 1 mm:</p>
+<div class="arithmatex">\[ \Delta L = \frac{0.001}{2} = 0.0005 \, \text{m} \]</div>
+<h3 id="4-propagated-uncertainty-in-g">4. Propagated Uncertainty in <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span>:</h3>
+<div class="arithmatex">\[ \Delta g = g \sqrt{ \left( \frac{\Delta L}{L} \right)^2 + \left( 2 \cdot \frac{\Delta T}{T} \right)^2 } \]</div>
+<hr/>
+<h2 id="practical-applications">Practical Applications</h2>
+<ul>
+<li><strong>Engineering</strong>: Accurate value of <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> is needed for structure analysis and load design.</li>
+<li><strong>Geophysics</strong>: Differences in <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> can reveal subsurface features.</li>
+<li><strong>Planetary Science</strong>: Similar pendulum experiments can be used on other planets.</li>
+</ul>
+<h3 id="additional-formulas">Additional Formulas:</h3>
+<p>For other planets:</p>
+<div class="arithmatex">\[ g_{planet} = \frac{4\pi^2 L}{T_{planet}^2} \]</div>
+<p>To design a pendulum of a specific period:</p>
+<div class="arithmatex">\[ L = \frac{g T^2}{4\pi^2} \]</div>
+<hr/>
+<h2 id="implementation-with-python-simulation">Implementation with Python Simulation</h2>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<p><strong>Here’s a Python code that simulates data collection, uncertainty propagation, and generates plots for the error convergence in the calculation</strong></p>
+<p><img alt="alt text" src="../image.png"/></p>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<p><img alt="alt text" src="../image-4.png"/>
+<strong>Explanation: This plot shows the direct relationship between pendulum length and period. As length increases, the period increases following the square-root function.</strong></p>
+<p><img alt="alt text" src="../image-5.png"/>
+<strong>Explanation: This simulates the angular displacement of the pendulum bob over time assuming small angle approximation. It shows classic simple harmonic motion.</strong></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this experiment, we used the periodic motion of a simple pendulum to measure the gravitational acceleration <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> near the Earth's surface. By timing 10 full oscillations and averaging across multiple trials, we minimized random errors and applied uncertainty propagation techniques to estimate the reliability of our results.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
