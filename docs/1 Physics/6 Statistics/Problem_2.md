@@ -7,8 +7,7 @@
 We inscribe a unit circle inside a square. The area of the square is:
 $$ A_{\text{square}} = 2^2 = 4 $$
 
-The area of the circle is:
-$$ A_{\text{circle}} = \pi r^2 = \pi $$ (since radius \( r = 1 \))
+
 
 If we generate random points uniformly inside the square, the ratio of points inside the circle to the total points should approximate the ratio of the areas:
 $$ \frac{\text{Points in circle}}{\text{Total points}} \approx \frac{\pi}{4} $$

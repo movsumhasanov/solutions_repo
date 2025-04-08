@@ -8,11 +8,6 @@ The Lorentz Force is the combination of electric and magnetic force on a point c
 $$ \vec{F} = q(\vec{E} + \vec{v} \times \vec{B}) $$
 
 Where:
-- $$ \vec{F} $$ is the Lorentz force
-- $$ q $$ is the electric charge of the particle
-- $$ \vec{E} $$ is the electric field
-- $$ \vec{v} $$ is the velocity of the particle
-- $$ \vec{B} $$ is the magnetic field
 
 In the presence of only a magnetic field ($$ \vec{E} = 0 $$), the motion is circular or helical:
 
@@ -32,9 +27,6 @@ $$ \omega = \frac{qB}{m} $$
 - If $$ \vec{v} \parallel \vec{B} $$: particle continues in straight line (no magnetic force).
 - If $$ \vec{v} $$ has both perpendicular and parallel components: helical path.
 
-The magnetic field does not do work:
-
-$$ W = \vec{F} \cdot \vec{d} = 0 $$ (since $$ \vec{F} \perp \vec{v} $$)
 
 ## Practical Applications
 
