@@ -172,6 +172,72 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</h1>
+<h2 id="theoretical-foundation">Theoretical Foundation</h2>
+<p>The Lorentz Force is the combination of electric and magnetic force on a point charge due to electromagnetic fields. It is given by:</p>
+<div class="arithmatex">\[ \vec{F} = q(\vec{E} + \vec{v} \times \vec{B}) \]</div>
+<p>Where:
+- $$ \vec{F} $$ is the Lorentz force
+- $$ q $$ is the electric charge of the particle
+- $$ \vec{E} $$ is the electric field
+- $$ \vec{v} $$ is the velocity of the particle
+- $$ \vec{B} $$ is the magnetic field</p>
+<p>In the presence of only a magnetic field ($$ \vec{E} = 0 $$), the motion is circular or helical:</p>
+<div class="arithmatex">\[ \vec{F} = q (\vec{v} \times \vec{B}) \]</div>
+<p>The radius of circular motion (Larmor radius):</p>
+<div class="arithmatex">\[ r = \frac{mv}{qB} \]</div>
+<p>The cyclotron frequency:</p>
+<div class="arithmatex">\[ \omega = \frac{qB}{m} \]</div>
+<h2 id="analysis-of-range">Analysis of Range</h2>
+<ul>
+<li>If $$ \vec{v} \perp \vec{B} $$: particle moves in a circle (magnetic force provides centripetal force).</li>
+<li>If $$ \vec{v} \parallel \vec{B} $$: particle continues in straight line (no magnetic force).</li>
+<li>If $$ \vec{v} $$ has both perpendicular and parallel components: helical path.</li>
+</ul>
+<p>The magnetic field does not do work:</p>
+<p>$$ W = \vec{F} \cdot \vec{d} = 0 $$ (since $$ \vec{F} \perp \vec{v} $$)</p>
+<h2 id="practical-applications">Practical Applications</h2>
+<ol>
+<li><strong>Cyclotron:</strong></li>
+<li>Uses circular motion from magnetic field.</li>
+<li>Kinetic energy gained from electric field in each half turn.</li>
+</ol>
+<p>$$ KE = \frac{1}{2}mv^2 $$</p>
+<ol>
+<li><strong>Mass Spectrometer:</strong></li>
+<li>
+<p>Separates ions based on $$ r = \frac{mv}{qB} $$</p>
+</li>
+<li>
+<p><strong>Plasma Confinement (Tokamak):</strong></p>
+</li>
+<li>Magnetic fields trap plasma particles in helical paths.</li>
+</ol>
+<h2 id="implementation-with-python-simulation">Implementation with Python Simulation</h2>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<h2 id="discussion">Discussion</h2>
+<p><strong>Diagram 1: Helical Path (Above)</strong>
+- The charged particle spirals along the direction of the magnetic field ($$ z $$ axis).
+- The perpendicular component of velocity causes circular motion.
+- The parallel component causes motion along $$ z $$ direction.</p>
+<p><strong>Diagram 2: Pure Circular Motion (set $$ v_z = 0 $$)</strong>
+- The motion becomes a perfect circle in the $$ xy $$ plane.</p>
+<p><strong>Diagram 3: Crossed Fields (Add $$ E \neq 0 $$)</strong>
+- Particles experience drift velocity:</p>
+<div class="arithmatex">\[ \vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2} \]</div>
+<p>This creates an overall motion perpendicular to both fields.</p>
+<p><img alt="alt text" src="../image.png"/></p>
+<p>Explanation of the Output:
+Each row in the grid represents a different population distribution.</p>
+<p>Each column shows the histogram of sample means for increasing sample sizes: 5, 10, 30, and 50.</p>
+<p><img alt="alt text" src="../image-1.png"/>
+Diagram Explanation: Trajectory of a Charged Particle in a Uniform Magnetic Field
+This graph illustrates the motion of a charged particle (like an electron or proton) in a uniform magnetic field pointing along the z-axis.</p>
+<p>The particle starts with an initial velocity along the x-axis, and as it moves, it experiences a Lorentz force perpendicular to its velocity and the magnetic field.</p>
+<p>The result is a circular motion in the x-y plane, which is typical of charged particles in perpendicular magnetic fields.</p>
+<p>The trajectory seen in the plot is the projection of this circular motion onto the x-y plane.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p><strong>This simulation visually demonstrates how charged particles behave in electric and magnetic fields. The type of motion—circular, helical, or drift—depends on the orientation and strength of the fields and the initial velocity of the particle. These principles are crucial in many advanced technologies, including particle accelerators and plasma devices.</strong></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
