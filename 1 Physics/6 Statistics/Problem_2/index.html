@@ -86,6 +86,26 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#estimating-pi-using-monte-carlo-methods">Estimating \( \pi \) Using Monte Carlo Methods</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-foundation">Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#part-1-circle-based-monte-carlo-method">Part 1: Circle-Based Monte Carlo Method</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#part-2-buffons-needle-method">Part 2: Buffon's Needle Method</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-simulation">Python Simulation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#analysis-and-discussion">Analysis and Discussion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#diagram-explanation">Diagram Explanation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +192,49 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h3 id="estimating-pi-using-monte-carlo-methods">Estimating <span class="arithmatex">\( \pi \)</span> Using Monte Carlo Methods</h3>
+<h2 id="theoretical-foundation">Theoretical Foundation</h2>
+<h3 id="part-1-circle-based-monte-carlo-method">Part 1: Circle-Based Monte Carlo Method</h3>
+<p>We inscribe a unit circle inside a square. The area of the square is:
+$$ A_{\text{square}} = 2^2 = 4 $$</p>
+<p>The area of the circle is:
+$$ A_{\text{circle}} = \pi r^2 = \pi $$ (since radius <span class="arithmatex">\( r = 1 \)</span>)</p>
+<p>If we generate random points uniformly inside the square, the ratio of points inside the circle to the total points should approximate the ratio of the areas:
+$$ \frac{\text{Points in circle}}{\text{Total points}} \approx \frac{\pi}{4} $$</p>
+<p>Therefore, we estimate:
+$$ \pi \approx 4 \cdot \frac{\text{Points in circle}}{\text{Total points}} $$</p>
+<h3 id="part-2-buffons-needle-method">Part 2: Buffon's Needle Method</h3>
+<p>Let <span class="arithmatex">\( l \)</span> be the length of the needle and <span class="arithmatex">\( d \)</span> be the distance between parallel lines (<span class="arithmatex">\( l \leq d \)</span>). The probability <span class="arithmatex">\( P \)</span> that a randomly thrown needle crosses a line is:
+$$ P = \frac{2l}{\pi d} $$</p>
+<p>Solving for <span class="arithmatex">\( \pi \)</span>:
+$$ \pi \approx \frac{2l \cdot N}{d \cdot C} $$
+Where:
+- <span class="arithmatex">\( N \)</span> is the total number of needle drops
+- <span class="arithmatex">\( C \)</span> is the number of times a needle crosses a line</p>
+<h2 id="python-simulation">Python Simulation</h2>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<h2 id="analysis-and-discussion">Analysis and Discussion</h2>
+<ul>
+<li>Both methods rely on the Law of Large Numbers: as the number of simulations increases, the estimates converge toward <span class="arithmatex">\( \pi \)</span>.</li>
+<li>The circle method tends to converge faster and more smoothly than Buffon’s Needle.</li>
+<li>Buffon’s method is historically significant but sensitive to geometric constraints (needle length ≤ line spacing).</li>
+</ul>
+<h3 id="diagram-explanation">Diagram Explanation</h3>
+<ul>
+<li><strong>Circle Simulation Plot</strong>: Blue points are inside the circle, red outside. Their ratio estimates <span class="arithmatex">\( \pi \)</span>.</li>
+<li><strong>Needle Simulation Plot</strong>: Blue needles cross lines; red do not. The proportion of crossing events helps estimate <span class="arithmatex">\( \pi \)</span>.</li>
+</ul>
+<p><strong>Code Snippet for Convergence Plot (Circle-based Method)</strong>
+<img alt="alt text" src="../image-5.png"/></p>
+<p><strong>Code Snippet for Convergence Plot (Buffon's Needle Method)</strong>
+<img alt="alt text" src="../image-6.png"/></p>
+<p><strong>Explanation:</strong>\
+Loop Over Iterations: After each iteration, the estimation of π is updated and stored in estimates_of_pi.
+Plotting: The matplotlib library is used to plot how the estimation of π changes over time, with the true value of π shown as a dashed red line.
+Convergence: As the number of iterations increases, the plot will show how the estimated value of π converges towards the true value (≈ 3.14159).</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Monte Carlo simulations provide an intuitive way to approximate mathematical constants like <span class="arithmatex">\( \pi \)</span>. By comparing different approaches, we gain insight into randomness, convergence, and statistical estimation. The circle-based method is generally preferred for teaching and accuracy, while Buffon’s Needle adds historical and probabilistic depth.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
