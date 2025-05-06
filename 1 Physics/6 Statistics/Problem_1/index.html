@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Central Limit Theorem: Simulation-Based Exploration - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Central Limit Theorem: Simulation-Based Exploration";
         var mkdocs_page_input_path = "1 Physics/6 Statistics/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -82,8 +82,42 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">6 Statistics</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Central Limit Theorem: Simulation-Based Exploration</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-foundation">Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-formula">Key Formula:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#analysis-of-range">Analysis of Range</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-uniform-distribution-sim-mathcalua-b">1. Uniform Distribution $\sim \mathcal{U}(a, b)$</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-exponential-distribution-sim-textexplambda">2. Exponential Distribution $\sim \text{Exp}(\lambda)$</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-binomial-distribution-sim-textbinn-p">3. Binomial Distribution $\sim \text{Bin}(n, p)$</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#practical-applications">Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-with-python-simulation">Implementation with Python Simulation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#discussion-and-diagrams">Discussion and Diagrams</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#diagram-1-uniform-distribution-clt-convergence">Diagram 1: Uniform Distribution CLT Convergence</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#diagram-2-exponential-distribution-clt-convergence">Diagram 2: Exponential Distribution CLT Convergence</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#diagram-3-binomial-distribution-clt-convergence">Diagram 3: Binomial Distribution CLT Convergence</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#next-steps">Next Steps</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -163,7 +197,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">6 Statistics</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Central Limit Theorem: Simulation-Based Exploration</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,66 +205,113 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
-<h1 id="simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</h1>
+<h1 id="central-limit-theorem-simulation-based-exploration">Central Limit Theorem: Simulation-Based Exploration</h1>
+<hr/>
 <h2 id="theoretical-foundation">Theoretical Foundation</h2>
-<p>The Lorentz Force is the combination of electric and magnetic force on a point charge due to electromagnetic fields. It is given by:</p>
-<div class="arithmatex">\[ \vec{F} = q(\vec{E} + \vec{v} \times \vec{B}) \]</div>
-<p>Where:</p>
-<p>In the presence of only a magnetic field ($$ \vec{E} = 0 $$), the motion is circular or helical:</p>
-<div class="arithmatex">\[ \vec{F} = q (\vec{v} \times \vec{B}) \]</div>
-<p>The radius of circular motion (Larmor radius):</p>
-<div class="arithmatex">\[ r = \frac{mv}{qB} \]</div>
-<p>The cyclotron frequency:</p>
-<div class="arithmatex">\[ \omega = \frac{qB}{m} \]</div>
+<p>The <strong>Central Limit Theorem (CLT)</strong> states that, given a sufficiently large sample size, the sampling distribution of the mean of any independent random variable will be approximately normally distributed, regardless of the variable's original distribution.</p>
+<h3 id="key-formula">Key Formula:</h3>
+<p>If $X_1, X_2, \dots, X_n$ are independent and identically distributed (i.i.d.) random variables with mean $\mu$ and variance $\sigma^2$, then the sample mean:</p>
+<div class="arithmatex">\[
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+\]</div>
+<p>has an approximate normal distribution:</p>
+<div class="arithmatex">\[
+\bar{X}_n \sim \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right) \quad \text{as } n \to \infty
+\]</div>
+<hr/>
 <h2 id="analysis-of-range">Analysis of Range</h2>
+<p>We explore the following distributions:</p>
+<h3 id="1-uniform-distribution-sim-mathcalua-b">1. Uniform Distribution $\sim \mathcal{U}(a, b)$</h3>
 <ul>
-<li>If $$ \vec{v} \perp \vec{B} $$: particle moves in a circle (magnetic force provides centripetal force).</li>
-<li>If $$ \vec{v} \parallel \vec{B} $$: particle continues in straight line (no magnetic force).</li>
-<li>If $$ \vec{v} $$ has both perpendicular and parallel components: helical path.</li>
+<li>Mean: <span class="arithmatex">\(\mu = \frac{a + b}{2}\)</span></li>
+<li>Variance: <span class="arithmatex">\(\sigma^2 = \frac{(b - a)^2}{12}\)</span></li>
 </ul>
+<h3 id="2-exponential-distribution-sim-textexplambda">2. Exponential Distribution $\sim \text{Exp}(\lambda)$</h3>
+<ul>
+<li>Mean: <span class="arithmatex">\(\mu = \frac{1}{\lambda}\)</span></li>
+<li>Variance: <span class="arithmatex">\(\sigma^2 = \frac{1}{\lambda^2}\)</span></li>
+</ul>
+<h3 id="3-binomial-distribution-sim-textbinn-p">3. Binomial Distribution $\sim \text{Bin}(n, p)$</h3>
+<ul>
+<li>Mean: <span class="arithmatex">\(\mu = np\)</span></li>
+<li>Variance: <span class="arithmatex">\(\sigma^2 = np(1 - p)\)</span></li>
+</ul>
+<p>As $n$ increases, the sample mean distribution approaches:</p>
+<div class="arithmatex">\[
+\bar{X}_n \approx \mathcal{N}(\mu, \frac{\sigma^2}{n})
+\]</div>
+<hr/>
 <h2 id="practical-applications">Practical Applications</h2>
-<ol>
-<li><strong>Cyclotron:</strong></li>
-<li>Uses circular motion from magnetic field.</li>
-<li>Kinetic energy gained from electric field in each half turn.</li>
-</ol>
-<p>$$ KE = \frac{1}{2}mv^2 $$</p>
-<ol>
-<li><strong>Mass Spectrometer:</strong></li>
-<li>
-<p>Separates ions based on $$ r = \frac{mv}{qB} $$</p>
-</li>
-<li>
-<p><strong>Plasma Confinement (Tokamak):</strong></p>
-</li>
-<li>Magnetic fields trap plasma particles in helical paths.</li>
-</ol>
+<ul>
+<li><strong>Statistical inference</strong>: Confidence intervals and hypothesis tests rely on normal approximations.</li>
+<li><strong>Quality control</strong>: Monitoring product variation via sample averages.</li>
+<li><strong>Economics &amp; finance</strong>: Portfolio returns modeled via CLT for large $n$.</li>
+</ul>
+<hr/>
 <h2 id="implementation-with-python-simulation">Implementation with Python Simulation</h2>
-<p><img alt="alt text" src="../image-2.png"/></p>
-<h2 id="discussion">Discussion</h2>
-<p><strong>Diagram 1: Helical Path (Above)</strong>
-- The charged particle spirals along the direction of the magnetic field ($$ z $$ axis).
-- The perpendicular component of velocity causes circular motion.
-- The parallel component causes motion along $$ z $$ direction.</p>
-<p><strong>Diagram 2: Pure Circular Motion (set $$ v_z = 0 $$)</strong>
-- The motion becomes a perfect circle in the $$ xy $$ plane.</p>
-<p><strong>Diagram 3: Crossed Fields (Add $$ E \neq 0 $$)</strong>
-- Particles experience drift velocity:</p>
-<div class="arithmatex">\[ \vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2} \]</div>
-<p>This creates an overall motion perpendicular to both fields.</p>
-<p><img alt="alt text" src="../image.png"/></p>
-<p>Explanation of the Output:
-Each row in the grid represents a different population distribution.</p>
-<p>Each column shows the histogram of sample means for increasing sample sizes: 5, 10, 30, and 50.</p>
-<p><img alt="alt text" src="../image-1.png"/>
-Diagram Explanation: Trajectory of a Charged Particle in a Uniform Magnetic Field
-This graph illustrates the motion of a charged particle (like an electron or proton) in a uniform magnetic field pointing along the z-axis.</p>
-<p>The particle starts with an initial velocity along the x-axis, and as it moves, it experiences a Lorentz force perpendicular to its velocity and the magnetic field.</p>
-<p>The result is a circular motion in the x-y plane, which is typical of charged particles in perpendicular magnetic fields.</p>
-<p>The trajectory seen in the plot is the projection of this circular motion onto the x-y plane.</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+np.random.seed(0)
+def simulate_clt(distribution, params, sample_sizes, num_samples=1000):
+    plt.figure(figsize=(15, 10))
+    for i, n in enumerate(sample_sizes):
+        sample_means = []
+        for _ in range(num_samples):
+            if distribution == 'uniform':
+                samples = np.random.uniform(*params, size=n)
+            elif distribution == 'exponential':
+                samples = np.random.exponential(scale=params[0], size=n)
+            elif distribution == 'binomial':
+                samples = np.random.binomial(params[0], params[1], size=n)
+            sample_means.append(np.mean(samples))
+
+        plt.subplot(2, 2, i + 1)
+        sns.histplot(sample_means, kde=True, stat="density", bins=30)
+        plt.title(f'{distribution.capitalize()} Dist., Sample Size = {n}')
+        plt.xlabel('Sample Mean')
+        plt.ylabel('Density')
+    plt.tight_layout()
+    plt.show()
+
+# Example: Uniform distribution [0, 1], Exponential (lambda = 1), Binomial(n=10, p=0.5)
+simulate_clt('uniform', (0, 1), [5, 10, 30, 50])
+simulate_clt('exponential', (1,), [5, 10, 30, 50])
+simulate_clt('binomial', (10, 0.5), [5, 10, 30, 50])
+</code></pre>
+<hr/>
+<p><img alt="alt text" src="../image-7.png"/></p>
+<h2 id="discussion-and-diagrams">Discussion and Diagrams</h2>
+<h3 id="diagram-1-uniform-distribution-clt-convergence">Diagram 1: Uniform Distribution CLT Convergence</h3>
+<p>Shows histograms of sample means from a uniform $[0,1]$ distribution as sample size increases.</p>
+<ul>
+<li><strong>Explanation</strong>: Even though the uniform distribution is flat, the sample mean distribution becomes bell-shaped due to CLT.</li>
+</ul>
+<h3 id="diagram-2-exponential-distribution-clt-convergence">Diagram 2: Exponential Distribution CLT Convergence</h3>
+<p>Demonstrates convergence from a right-skewed exponential distribution.</p>
+<ul>
+<li><strong>Explanation</strong>: Despite the asymmetry of the original distribution, the sampling distribution of the mean becomes symmetric.</li>
+</ul>
+<h3 id="diagram-3-binomial-distribution-clt-convergence">Diagram 3: Binomial Distribution CLT Convergence</h3>
+<p>Illustrates how the discrete binomial distribution's sample mean approaches normality.</p>
+<ul>
+<li><strong>Explanation</strong>: With increasing samples, discrete distributions yield smooth, approximately normal sample mean distributions.</li>
+</ul>
+<hr/>
 <h2 id="conclusion">Conclusion</h2>
-<p><strong>This simulation visually demonstrates how charged particles behave in electric and magnetic fields. The type of motion—circular, helical, or drift—depends on the orientation and strength of the fields and the initial velocity of the particle. These principles are crucial in many advanced technologies, including particle accelerators and plasma devices.</strong></p>
+<ul>
+<li>The CLT holds for all tested distributions regardless of their shape.</li>
+<li>As sample size $n$ increases, the sample mean distribution converges to a normal distribution with mean $\mu$ and variance $\sigma^2/n$.</li>
+<li>Practical experiments confirm theoretical expectations, reinforcing the foundational importance of the CLT in statistical analysis.</li>
+</ul>
+<hr/>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Extend simulation to include other distributions (e.g., Poisson, geometric).</li>
+<li>Analyze rate of convergence using statistical distance metrics like KL-divergence or KS-test.</li>
+<li>Explore multivariate CLT and its implications in high-dimensional data.</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
