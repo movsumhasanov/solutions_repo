@@ -59,41 +59,24 @@ $$
 
 ## Implementation with Python Simulation
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-np.random.seed(0)
-def simulate_clt(distribution, params, sample_sizes, num_samples=1000):
-    plt.figure(figsize=(15, 10))
-    for i, n in enumerate(sample_sizes):
-        sample_means = []
-        for _ in range(num_samples):
-            if distribution == 'uniform':
-                samples = np.random.uniform(*params, size=n)
-            elif distribution == 'exponential':
-                samples = np.random.exponential(scale=params[0], size=n)
-            elif distribution == 'binomial':
-                samples = np.random.binomial(params[0], params[1], size=n)
-            sample_means.append(np.mean(samples))
-
-        plt.subplot(2, 2, i + 1)
-        sns.histplot(sample_means, kde=True, stat="density", bins=30)
-        plt.title(f'{distribution.capitalize()} Dist., Sample Size = {n}')
-        plt.xlabel('Sample Mean')
-        plt.ylabel('Density')
-    plt.tight_layout()
-    plt.show()
-
-# Example: Uniform distribution [0, 1], Exponential (lambda = 1), Binomial(n=10, p=0.5)
-simulate_clt('uniform', (0, 1), [5, 10, 30, 50])
-simulate_clt('exponential', (1,), [5, 10, 30, 50])
-simulate_clt('binomial', (10, 0.5), [5, 10, 30, 50])
-```
-
----
 ![alt text](image-7.png)
+
+## 1. Simulating Sampling Distributions
+🔢 Objective:
+Simulate three types of populations to explore how their shapes influence the behavior of sample means in the Central Limit Theorem (CLT).
+
+![alt text](image-8.png)
+
+##  Python Code: CLT in Quality Control
+![alt text](image-9.png)
+Diagram Explanation:
+
+- The histogram shows the distribution of the means of 1000 random samples, each with 30 product weights.
+
+- The red dashed line represents the average of these sample means (≈ population mean).
+
+- The bell-shaped curve demonstrates that sample means approximate a normal distribution, validating the Central Limit Theorem.
 
 ## Discussion and Diagrams
 
