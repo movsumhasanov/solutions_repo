@@ -5,32 +5,42 @@
 
 ---
 
-### Motivation
-
-The acceleration $$g$$ due to gravity is a fundamental constant that influences a wide range of physical phenomena. Measuring $$g$$ accurately is crucial for understanding gravitational interactions, designing structures, and conducting experiments in various fields. One classic method for determining $$g$$ is through the oscillations of a simple pendulum, where the period of oscillation depends on the local gravitational field.
-
----
-
-## Theoretical Foundation
-
-A simple pendulum undergoing small-angle oscillations behaves like a simple harmonic oscillator.
-
-### Formula for the Period:
-
-$$ T = 2\pi \sqrt{\frac{L}{g}} $$
-
+###  Objective
+The aim is to estimate Earth's gravitational acceleration \( g \) using a simple pendulum and analyze how uncertainties in measurement affect the final result. This classic physics experiment demonstrates the relationship between pendulum period and gravitational pull using the formula:
+ 
+\[
+g = \frac{4\pi^2 L}{T^2}
+\]
+ 
 Where:
-
-- $$T: Period of oscillation (s)  $$
-- $$L: Length of the pendulum (m) $$  
-- $$g: Gravitational acceleration (m/s²)$$
-
-Rearranged to solve for g:
-
-$$g = \frac{4\pi^2 L}{T^2}$$
-
-This formula assumes a small-angle approximation: $$ \theta < 15^\circ $$
-
+- \( L \) is the length of the pendulum
+- \( T \) is the time period of one complete oscillation
+ 
+---
+ 
+### 🧪 Materials & Setup
+- **String Length**: ~1.00 m  
+- **Pendulum Mass**: Any small weight (e.g., keys, washers)  
+- **Timer**: Stopwatch or phone timer  
+- **Length Measurement Tool**: Ruler or tape (±0.5 cm typical resolution)  
+- The pendulum is released at a small angle (<15°) and swings freely.
+ 
+---
+ 
+### 📏 Measurements
+ 
+We perform 10 independent trials, each recording the time for 10 oscillations. This reduces the error caused by human timing.
+ 
+```python
+# Measurement Data: 10 trials of 10 oscillations each
+T_10_trials = np.array([20.0, 20.1, 19.9, 20.0, 20.2, 20.0, 19.8, 20.1, 20.0, 19.9])
+```
+ 
+From this data:
+- Compute mean \( \bar{T}_{10} \)
+- Find period \( T = \bar{T}_{10} / 10 \)
+- Compute standard deviation to estimate uncertainty
+ 
 ---
 
 ## Analysis of Range
