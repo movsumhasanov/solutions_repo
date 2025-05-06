@@ -78,23 +78,7 @@ Diagram Explanation:
 
 - The bell-shaped curve demonstrates that sample means approximate a normal distribution, validating the Central Limit Theorem.
 
-## Discussion and Diagrams
 
-### Diagram 1: Uniform Distribution CLT Convergence
-
-Shows histograms of sample means from a uniform $\[0,1]\$ distribution as sample size increases.
-
-* **Explanation**: Even though the uniform distribution is flat, the sample mean distribution becomes bell-shaped due to CLT.
-
-### Diagram 2: Exponential Distribution CLT Convergence
-
-Demonstrates convergence from a right-skewed exponential distribution.
-
-* **Explanation**: Despite the asymmetry of the original distribution, the sampling distribution of the mean becomes symmetric.
-
-### Diagram 3: Binomial Distribution CLT Convergence
-
-Illustrates how the discrete binomial distribution's sample mean approaches normality.
 
 * **Explanation**: With increasing samples, discrete distributions yield smooth, approximately normal sample mean distributions.
 
