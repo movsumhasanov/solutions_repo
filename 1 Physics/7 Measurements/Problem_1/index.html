@@ -175,28 +175,33 @@
 <h1 id="physics-lab-report">Physics Lab Report</h1>
 <h2 id="problem-1-measuring-earths-gravitational-acceleration-with-a-pendulum">Problem 1: Measuring Earth's Gravitational Acceleration with a Pendulum</h2>
 <hr/>
-<h3 id="motivation">Motivation</h3>
-<p>The acceleration <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> due to gravity is a fundamental constant that influences a wide range of physical phenomena. Measuring <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> accurately is crucial for understanding gravitational interactions, designing structures, and conducting experiments in various fields. One classic method for determining <span class="arithmatex">\(<span class="arithmatex">\(g\)</span>\)</span> is through the oscillations of a simple pendulum, where the period of oscillation depends on the local gravitational field.</p>
+<h3 id="objective">Objective</h3>
+<p>The aim is to estimate Earth's gravitational acceleration <span class="arithmatex">\( g \)</span> using a simple pendulum and analyze how uncertainties in measurement affect the final result. This classic physics experiment demonstrates the relationship between pendulum period and gravitational pull using the formula:</p>
+<div class="arithmatex">\[
+g = \frac{4\pi^2 L}{T^2}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\( L \)</span> is the length of the pendulum
+- <span class="arithmatex">\( T \)</span> is the time period of one complete oscillation</p>
 <hr/>
-<h2 id="theoretical-foundation">Theoretical Foundation</h2>
-<p>A simple pendulum undergoing small-angle oscillations behaves like a simple harmonic oscillator.</p>
-<h3 id="formula-for-the-period">Formula for the Period:</h3>
-<div class="arithmatex">\[ T = 2\pi \sqrt{\frac{L}{g}} \]</div>
-<p>Where:</p>
+<h3 id="materials-setup">🧪 Materials &amp; Setup</h3>
 <ul>
-<li>
-<div class="arithmatex">\[T: Period of oscillation (s)  \]</div>
-</li>
-<li>
-<div class="arithmatex">\[L: Length of the pendulum (m) \]</div>
-</li>
-<li>
-<div class="arithmatex">\[g: Gravitational acceleration (m/s²)\]</div>
-</li>
+<li><strong>String Length</strong>: ~1.00 m  </li>
+<li><strong>Pendulum Mass</strong>: Any small weight (e.g., keys, washers)  </li>
+<li><strong>Timer</strong>: Stopwatch or phone timer  </li>
+<li><strong>Length Measurement Tool</strong>: Ruler or tape (±0.5 cm typical resolution)  </li>
+<li>The pendulum is released at a small angle (&lt;15°) and swings freely.</li>
 </ul>
-<p>Rearranged to solve for g:</p>
-<div class="arithmatex">\[g = \frac{4\pi^2 L}{T^2}\]</div>
-<p>This formula assumes a small-angle approximation: $$ \theta &lt; 15^\circ $$</p>
+<hr/>
+<h3 id="measurements">📏 Measurements</h3>
+<p>We perform 10 independent trials, each recording the time for 10 oscillations. This reduces the error caused by human timing.</p>
+<pre><code class="language-python"># Measurement Data: 10 trials of 10 oscillations each
+T_10_trials = np.array([20.0, 20.1, 19.9, 20.0, 20.2, 20.0, 19.8, 20.1, 20.0, 19.9])
+</code></pre>
+<p>From this data:
+- Compute mean <span class="arithmatex">\( \bar{T}_{10} \)</span>
+- Find period <span class="arithmatex">\( T = \bar{T}_{10} / 10 \)</span>
+- Compute standard deviation to estimate uncertainty</p>
 <hr/>
 <h2 id="analysis-of-range">Analysis of Range</h2>
 <h3 id="1-measuring-period-from-10-oscillations">1. Measuring Period from 10 Oscillations:</h3>
