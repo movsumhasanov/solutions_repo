@@ -123,11 +123,3 @@ Illustrates how the discrete binomial distribution's sample mean approaches norm
 * As sample size \$n\$ increases, the sample mean distribution converges to a normal distribution with mean \$\mu\$ and variance \$\sigma^2/n\$.
 * Practical experiments confirm theoretical expectations, reinforcing the foundational importance of the CLT in statistical analysis.
 
----
-
-## Next Steps
-
-* Extend simulation to include other distributions (e.g., Poisson, geometric).
-* Analyze rate of convergence using statistical distance metrics like KL-divergence or KS-test.
-* Explore multivariate CLT and its implications in high-dimensional data.
-
