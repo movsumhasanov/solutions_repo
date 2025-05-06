@@ -1,91 +1,133 @@
-# Problem 1
-# Simulating the Effects of the Lorentz Force
+# Central Limit Theorem: Simulation-Based Exploration
+
+---
 
 ## Theoretical Foundation
 
-The Lorentz Force is the combination of electric and magnetic force on a point charge due to electromagnetic fields. It is given by:
+The **Central Limit Theorem (CLT)** states that, given a sufficiently large sample size, the sampling distribution of the mean of any independent random variable will be approximately normally distributed, regardless of the variable's original distribution.
 
-$$ \vec{F} = q(\vec{E} + \vec{v} \times \vec{B}) $$
+### Key Formula:
 
-Where:
+If \$X\_1, X\_2, \dots, X\_n\$ are independent and identically distributed (i.i.d.) random variables with mean \$\mu\$ and variance \$\sigma^2\$, then the sample mean:
 
-In the presence of only a magnetic field ($$ \vec{E} = 0 $$), the motion is circular or helical:
+$$
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+$$
 
-$$ \vec{F} = q (\vec{v} \times \vec{B}) $$
+has an approximate normal distribution:
 
-The radius of circular motion (Larmor radius):
+$$
+\bar{X}_n \sim \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right) \quad \text{as } n \to \infty
+$$
 
-$$ r = \frac{mv}{qB} $$
-
-The cyclotron frequency:
-
-$$ \omega = \frac{qB}{m} $$
+---
 
 ## Analysis of Range
 
-- If $$ \vec{v} \perp \vec{B} $$: particle moves in a circle (magnetic force provides centripetal force).
-- If $$ \vec{v} \parallel \vec{B} $$: particle continues in straight line (no magnetic force).
-- If $$ \vec{v} $$ has both perpendicular and parallel components: helical path.
+We explore the following distributions:
 
+### 1. Uniform Distribution \$\sim \mathcal{U}(a, b)\$
+
+* Mean: $\mu = \frac{a + b}{2}$
+* Variance: $\sigma^2 = \frac{(b - a)^2}{12}$
+
+### 2. Exponential Distribution \$\sim \text{Exp}(\lambda)\$
+
+* Mean: $\mu = \frac{1}{\lambda}$
+* Variance: $\sigma^2 = \frac{1}{\lambda^2}$
+
+### 3. Binomial Distribution \$\sim \text{Bin}(n, p)\$
+
+* Mean: $\mu = np$
+* Variance: $\sigma^2 = np(1 - p)$
+
+As \$n\$ increases, the sample mean distribution approaches:
+
+$$
+\bar{X}_n \approx \mathcal{N}(\mu, \frac{\sigma^2}{n})
+$$
+
+---
 
 ## Practical Applications
 
-1. **Cyclotron:**
-   - Uses circular motion from magnetic field.
-   - Kinetic energy gained from electric field in each half turn.
-   
-   $$ KE = \frac{1}{2}mv^2 $$
+* **Statistical inference**: Confidence intervals and hypothesis tests rely on normal approximations.
+* **Quality control**: Monitoring product variation via sample averages.
+* **Economics & finance**: Portfolio returns modeled via CLT for large \$n\$.
 
-2. **Mass Spectrometer:**
-   - Separates ions based on $$ r = \frac{mv}{qB} $$
-
-3. **Plasma Confinement (Tokamak):**
-   - Magnetic fields trap plasma particles in helical paths.
+---
 
 ## Implementation with Python Simulation
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-![alt text](image-2.png)
+np.random.seed(0)
+def simulate_clt(distribution, params, sample_sizes, num_samples=1000):
+    plt.figure(figsize=(15, 10))
+    for i, n in enumerate(sample_sizes):
+        sample_means = []
+        for _ in range(num_samples):
+            if distribution == 'uniform':
+                samples = np.random.uniform(*params, size=n)
+            elif distribution == 'exponential':
+                samples = np.random.exponential(scale=params[0], size=n)
+            elif distribution == 'binomial':
+                samples = np.random.binomial(params[0], params[1], size=n)
+            sample_means.append(np.mean(samples))
 
-## Discussion
+        plt.subplot(2, 2, i + 1)
+        sns.histplot(sample_means, kde=True, stat="density", bins=30)
+        plt.title(f'{distribution.capitalize()} Dist., Sample Size = {n}')
+        plt.xlabel('Sample Mean')
+        plt.ylabel('Density')
+    plt.tight_layout()
+    plt.show()
 
-**Diagram 1: Helical Path (Above)**
-- The charged particle spirals along the direction of the magnetic field ($$ z $$ axis).
-- The perpendicular component of velocity causes circular motion.
-- The parallel component causes motion along $$ z $$ direction.
+# Example: Uniform distribution [0, 1], Exponential (lambda = 1), Binomial(n=10, p=0.5)
+simulate_clt('uniform', (0, 1), [5, 10, 30, 50])
+simulate_clt('exponential', (1,), [5, 10, 30, 50])
+simulate_clt('binomial', (10, 0.5), [5, 10, 30, 50])
+```
 
-**Diagram 2: Pure Circular Motion (set $$ v_z = 0 $$)**
-- The motion becomes a perfect circle in the $$ xy $$ plane.
+---
+![alt text](image-7.png)
 
-**Diagram 3: Crossed Fields (Add $$ E \neq 0 $$)**
-- Particles experience drift velocity:
+## Discussion and Diagrams
 
-$$ \vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2} $$
+### Diagram 1: Uniform Distribution CLT Convergence
 
-This creates an overall motion perpendicular to both fields.
+Shows histograms of sample means from a uniform $\[0,1]\$ distribution as sample size increases.
 
-![alt text](image.png)
+* **Explanation**: Even though the uniform distribution is flat, the sample mean distribution becomes bell-shaped due to CLT.
 
-Explanation of the Output:
-Each row in the grid represents a different population distribution.
+### Diagram 2: Exponential Distribution CLT Convergence
 
-Each column shows the histogram of sample means for increasing sample sizes: 5, 10, 30, and 50.
+Demonstrates convergence from a right-skewed exponential distribution.
 
+* **Explanation**: Despite the asymmetry of the original distribution, the sampling distribution of the mean becomes symmetric.
 
+### Diagram 3: Binomial Distribution CLT Convergence
 
-![alt text](image-1.png)
-Diagram Explanation: Trajectory of a Charged Particle in a Uniform Magnetic Field
-This graph illustrates the motion of a charged particle (like an electron or proton) in a uniform magnetic field pointing along the z-axis.
+Illustrates how the discrete binomial distribution's sample mean approaches normality.
 
-The particle starts with an initial velocity along the x-axis, and as it moves, it experiences a Lorentz force perpendicular to its velocity and the magnetic field.
+* **Explanation**: With increasing samples, discrete distributions yield smooth, approximately normal sample mean distributions.
 
-The result is a circular motion in the x-y plane, which is typical of charged particles in perpendicular magnetic fields.
-
-The trajectory seen in the plot is the projection of this circular motion onto the x-y plane.
-
+---
 
 ## Conclusion
 
-**This simulation visually demonstrates how charged particles behave in electric and magnetic fields. The type of motion—circular, helical, or drift—depends on the orientation and strength of the fields and the initial velocity of the particle. These principles are crucial in many advanced technologies, including particle accelerators and plasma devices.**
+* The CLT holds for all tested distributions regardless of their shape.
+* As sample size \$n\$ increases, the sample mean distribution converges to a normal distribution with mean \$\mu\$ and variance \$\sigma^2/n\$.
+* Practical experiments confirm theoretical expectations, reinforcing the foundational importance of the CLT in statistical analysis.
 
+---
+
+## Next Steps
+
+* Extend simulation to include other distributions (e.g., Poisson, geometric).
+* Analyze rate of convergence using statistical distance metrics like KL-divergence or KS-test.
+* Explore multivariate CLT and its implications in high-dimensional data.
 
